@@ -2,7 +2,7 @@
 
 A modern, responsive personal portfolio website showcasing professional experience, skills, projects, and blog posts. Built with vanilla HTML, CSS, and JavaScript for optimal performance and simplicity.
 
-![Portfolio Preview](./assets/images/mushood.png)
+<img src="./assets/images/mushood.png" alt="Portfolio Preview" width="150" height="150" />
 
 ## 🌟 Features
 
