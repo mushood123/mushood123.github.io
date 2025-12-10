@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Blog Posts on Medium -->
+  <url>
+    <loc>https://medium.com/@khawaja.muhammad.mushood/exploring-react-19s-activity-component-preserve-state-and-optimize-performance-5bd66e44a0df</loc>
+    <lastmod>2025-11-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://medium.com/@khawaja.muhammad.mushood/setting-up-local-https-for-development-with-mkcert-the-right-way-with-express-js-759c43bfe382</loc>
+    <lastmod>2025-10-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://medium.com/@khawaja.muhammad.mushood/mastering-axios-zustand-persist-in-a-vite-react-app-the-complete-developer-guide-679ee875e685</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://medium.com/@khawaja.muhammad.mushood/using-environment-variables-in-a-react-vite-app-8d8515eef755</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://medium.com/@khawaja.muhammad.mushood/how-i-integrated-zoom-web-sdk-with-component-view-in-my-react-vite-app-8039cae3d08e</loc>
+    <lastmod>2025-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
