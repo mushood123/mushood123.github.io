@@ -1,0 +1,230 @@
+# Mushood - Personal Portfolio Website
+
+> A modern, responsive personal portfolio website showcasing professional experience, skills, projects, and blog posts.
+
+## Project Overview
+
+This is a single-page portfolio application built with vanilla HTML, CSS, and JavaScript. The website features a clean, professional design with smooth animations and a fully responsive layout that adapts to all screen sizes.
+
+## Key Information
+
+- **Owner**: Mushood (Khawaja Muhammad Mushood)
+- **Role**: Software Engineer
+- **Location**: Lahore, Pakistan
+- **Email**: khawaja.muhammad.mushood@gmail.com
+- **Website**: https://mushood123.github.io/
+- **Tech Stack**: HTML5, CSS3, Vanilla JavaScript
+- **Design**: Mobile-first, responsive, modern UI/UX
+
+## Professional Profile
+
+### Current Position
+Software Engineer at Texagon (Aug 2025 - Present)
+- Full-stack web applications using React and Node.js with Nest.js
+- High-speed RESTful APIs with Redis caching
+- Supabase integration for enhanced reliability
+
+### Previous Experience
+- Web Developer at Code To Kloud (April 2025 - Aug 2025)
+- Software Engineer Intern at Arbisoft (July 2024 - Sep 2024)
+
+### Education
+BSc in Computer Science from University of Management and Technology (2021-2025)
+CGPA: 3.7/4.0
+
+## Technical Skills
+
+### Frontend Development (90%)
+- React / React Native
+- Next.js, TypeScript
+- Tailwind CSS
+- Redux / Redux Toolkit / Redux Saga
+
+### Backend Development (85%)
+- Node.js / Express / Nest.js
+- RESTful APIs
+- JWT Authentication
+- HIPAA-aligned security practices
+
+### Database & ORM (80%)
+- PostgreSQL
+- Prisma ORM
+- Redis caching
+
+### Cloud & DevOps (75%)
+- AWS (EC2, RDS, Nginx, PM2)
+- CI/CD (CircleCI, GitHub Actions)
+- Supabase Integration
+
+### Mobile Development
+- React Native
+- Firebase (Realtime DB, Auth, Push Notifications)
+- Context API state management
+
+### Testing & Quality
+- Jest
+- Snapshot Testing
+- Unit Testing
+
+### Tools & Version Control (90%)
+- Git / GitHub
+- npm / Yarn
+- Styled Components & Animations
+
+## Services Offered
+
+1. **Frontend Development**: Responsive and user-friendly websites using JavaScript, TypeScript, React, Next.js, and Tailwind CSS
+
+2. **Backend Development**: Scalable and efficient backend systems using Node.js, Express.js, TypeScript, and Nest.js
+
+3. **Mobile Apps**: Cross-platform mobile apps using React Native for fast and efficient development
+
+4. **AI and Automation**: AI-based automation solutions using n8n, OpenAI, and other modern tools
+
+## Project Structure
+
+```
+Portfolio-FE/
+├── index.html              # Main HTML file (1130 lines)
+├── robots.txt              # Search engine directives
+├── sitemap.xml             # Main sitemap
+├── sitemap-index.xml       # Sitemap index
+├── sitemap-main.xml        # Main pages sitemap
+├── sitemap-blog.xml        # Blog posts sitemap
+├── sitemap-social.xml      # Social profiles sitemap
+├── google1a6ee1d70bb049f0.html  # Google verification
+├── README.md               # Project documentation
+└── assets/
+    ├── css/
+    │   └── style.css       # Main stylesheet
+    ├── js/
+    │   └── script.js       # Main JavaScript
+    ├── images/             # Images, icons, and project screenshots
+    └── resume/             # Resume PDF
+
+```
+
+## Website Sections
+
+### 1. About
+- Professional introduction and bio
+- Service offerings showcase
+- What I'm doing section with 4 main services
+
+### 2. Resume
+- Education timeline
+- Professional experience timeline
+- Skills visualization with progress bars
+- Downloadable resume PDF
+
+### 3. Portfolio
+- Filterable project gallery
+- Categories: Web Development, Web Design, Applications
+- Interactive project cards with hover effects
+
+### 4. Blog
+- Integration with Medium blog posts
+- Featured articles on React, development tools, and best practices
+- External links to full articles
+
+### 5. Contact
+- Interactive contact form with validation
+- Google Maps integration
+- Contact information display
+
+## Key Features
+
+- **Responsive Design**: Mobile-first approach with collapsible sidebar
+- **SPA Navigation**: Single-page application behavior without page reloads
+- **Portfolio Filtering**: Real-time project filtering by category
+- **Form Validation**: Dynamic contact form with real-time validation
+- **SEO Optimized**: Semantic HTML, meta tags, sitemaps, robots.txt
+- **Performance**: Lazy loading images, minimal dependencies, vanilla JavaScript
+
+## Design System
+
+### Colors
+- Primary: Orange Yellow Crayola (hsl(45, 100%, 72%))
+- Accent: Vegas Gold (hsl(45, 54%, 58%))
+- Background: Eerie Black (hsl(240, 2%, 13%))
+- Text: Light Gray (hsl(0, 0%, 84%))
+
+### Typography
+- Font Family: Poppins (Google Fonts)
+- Font Weights: 300, 400, 500, 600
+
+### Effects
+- Smooth transitions (0.25s - 0.5s)
+- Gradient backgrounds
+- Backdrop blur effects
+- Multiple shadow layers for depth
+
+## Social Links
+
+- LinkedIn: https://www.linkedin.com/in/khawaja-muhammad-mushood/
+- GitHub: https://github.com/mushood123
+- Medium: https://medium.com/@khawaja.muhammad.mushood
+
+## SEO & Metadata
+
+- Canonical URL: https://mushood123.github.io/
+- Meta Description: Full-stack software engineer crafting scalable web and mobile solutions with React, Node.js & AI automation
+- Google Site Verification: Configured
+- Sitemaps: Multiple sitemaps for main pages, blog, and social profiles
+- Robots.txt: Configured for search engine crawling
+
+## Notable Projects
+
+The portfolio showcases various projects across:
+- Finance applications
+- Orizon platform
+- Fundo web design
+- Brawlhalla applications
+- DSM web design
+- MetaSpark platform
+- Summary tools
+
+## Blog Topics
+
+Featured articles on:
+- React 19's Activity Component
+- Local HTTPS Development with mkcert
+- Axios + Zustand + Persist in React
+- Environment Variables in Vite
+- Zoom Web SDK Integration
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## Performance Optimizations
+
+- Lazy loading for images
+- Minimal dependencies (only Ionicons)
+- Optimized CSS with custom properties
+- Vanilla JavaScript for fast load times
+- Compressed image assets
+
+## Accessibility
+
+- Semantic HTML5 elements
+- Proper heading hierarchy
+- Alt text for all images
+- Keyboard navigation support
+- ARIA attributes where needed
+
+## Contact Information
+
+For inquiries or collaboration:
+- Email: khawaja.muhammad.mushood@gmail.com
+- Phone: +92 302 4202082
+- Location: Lahore, Pakistan
+
+---
+
+Last Updated: December 2025
+Built with ❤️ by Mushood
