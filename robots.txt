@@ -5,8 +5,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://mushood123.github.io/sitemap.xml
+# Sitemap location (using sitemap index for better organization)
+Sitemap: https://mushood123.github.io/sitemap-index.xml
 
 # Crawl-delay (optional, helps prevent server overload)
 # Most modern search engines ignore this, but it's good practice
