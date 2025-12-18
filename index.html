@@ -1368,6 +1368,53 @@
     </main>
 
     <!--
+    - #CHAT
+  -->
+    <div class="chat-container" id="chatContainer">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <img
+            src="./assets/images/mushood.png"
+            alt="Mushood"
+            class="chat-avatar"
+          />
+          <div>
+            <h4 class="chat-header-title">Mushood</h4>
+            <span class="chat-status">Online</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" id="chatCloseBtn">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-message bot">
+          <p>
+            Hi! I'm Mushood's AI assistant. Ask me anything about his skills,
+            experience, or projects!
+          </p>
+        </div>
+      </div>
+      <form class="chat-input-form" id="chatForm">
+        <input
+          type="text"
+          class="chat-input"
+          id="chatInput"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button type="submit" class="chat-send-btn" id="chatSendBtn">
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">
+      <ion-icon name="chatbubble-ellipses" class="chat-fab-icon"></ion-icon>
+      <ion-icon name="close" class="chat-fab-icon-close"></ion-icon>
+    </button>
+
+    <!--
     - custom js link
   -->
     <script src="./assets/js/script.js"></script>

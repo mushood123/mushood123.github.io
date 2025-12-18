@@ -100,3 +100,107 @@ for (let i = 0; i < navigationLinks.length; i++) {
     }
   });
 }
+
+// chat variables
+const chatFab = document.getElementById("chatFab");
+const chatContainer = document.getElementById("chatContainer");
+const chatCloseBtn = document.getElementById("chatCloseBtn");
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+const chatMessages = document.getElementById("chatMessages");
+const chatSendBtn = document.getElementById("chatSendBtn");
+
+const CHAT_API_URL = "http://localhost:8000/chat";
+
+// toggle chat
+function toggleChat() {
+  chatFab.classList.toggle("active");
+  chatContainer.classList.toggle("active");
+  if (chatContainer.classList.contains("active")) {
+    chatInput.focus();
+  }
+}
+
+chatFab.addEventListener("click", toggleChat);
+chatCloseBtn.addEventListener("click", toggleChat);
+
+// add message to chat
+function addMessage(content, isUser = false) {
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `chat-message ${isUser ? "user" : "bot"}`;
+  messageDiv.innerHTML = `<p>${content}</p>`;
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// add typing indicator
+function addTypingIndicator() {
+  const typingDiv = document.createElement("div");
+  typingDiv.className = "chat-message bot typing";
+  typingDiv.id = "typingIndicator";
+  typingDiv.innerHTML = "<span></span><span></span><span></span>";
+  chatMessages.appendChild(typingDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// remove typing indicator
+function removeTypingIndicator() {
+  const typingIndicator = document.getElementById("typingIndicator");
+  if (typingIndicator) {
+    typingIndicator.remove();
+  }
+}
+
+// send message to API
+async function sendMessage(message) {
+  try {
+    const response = await fetch(CHAT_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: message }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to get response");
+    }
+
+    const data = await response.json();
+    return data.response;
+  } catch (error) {
+    console.error("Chat API error:", error);
+    return "Sorry, I'm having trouble connecting right now. Please try again later or reach out via email!";
+  }
+}
+
+// handle form submit
+chatForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const message = chatInput.value.trim();
+  if (!message) return;
+
+  // disable input while processing
+  chatInput.disabled = true;
+  chatSendBtn.disabled = true;
+
+  // add user message
+  addMessage(message, true);
+  chatInput.value = "";
+
+  // show typing indicator
+  addTypingIndicator();
+
+  // send to API and get response
+  const response = await sendMessage(message);
+
+  // remove typing indicator and add bot response
+  removeTypingIndicator();
+  addMessage(response);
+
+  // re-enable input
+  chatInput.disabled = false;
+  chatSendBtn.disabled = false;
+  chatInput.focus();
+});
