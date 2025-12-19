@@ -110,7 +110,7 @@ const chatInput = document.getElementById("chatInput");
 const chatMessages = document.getElementById("chatMessages");
 const chatSendBtn = document.getElementById("chatSendBtn");
 
-const CHAT_API_URL = "http://localhost:8000/chat";
+const CHAT_API_URL = "https://portfolio-be-production-4ce9.up.railway.app/chat";
 
 // toggle chat
 function toggleChat() {
