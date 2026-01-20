@@ -70,7 +70,6 @@ A modern, responsive personal portfolio website showcasing professional experien
 #### Contact Section
 
 - Interactive contact form with validation
-- Google Maps integration
 - Real-time form validation
 - Disabled submit button until form is valid
 
@@ -90,7 +89,7 @@ A modern, responsive personal portfolio website showcasing professional experien
 
 ### External Services
 
-- **Google Maps API**: Location embedding
+
 - **Medium**: Blog content hosting
 
 ## 📁 Project Structure
