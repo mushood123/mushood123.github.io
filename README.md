@@ -58,13 +58,9 @@ A modern, responsive personal portfolio website showcasing professional experien
 
 #### Blog Section
 
-- Integration with Medium blog posts
-- Featured articles on:
-  - React 19's Activity Component
-  - Local HTTPS Development with mkcert
-  - Axios + Zustand + Persist in React
-  - Environment Variables in Vite
-  - Zoom Web SDK Integration
+- Generated from the Medium RSS feed — see the **Blog Sync** section below
+- Banner images, categories, dates and excerpts pulled straight from the feed
+- Static HTML plus `Blog` structured data, so posts stay crawlable
 - External links to full articles
 
 #### Contact Section
@@ -105,12 +101,44 @@ Portfolio-FE/
 │   │   ├── icon-*.svg         # Service icons
 │   │   ├── project-*.jpg/png  # Portfolio project images
 │   │   ├── blog-*.jpg         # Blog post thumbnails
+│   │   ├── blog/              # Banners synced from Medium (generated)
 │   │   └── avatar-*.png       # Testimonial avatars
 │   └── js/
 │       └── script.js          # Main JavaScript file
+├── scripts/
+│   ├── update-blog.mjs        # Rebuilds the blog section from the Medium feed
+│   └── extra-posts.json       # Posts older than the feed's 10-item window
+├── .github/workflows/
+│   └── sync-medium-posts.yml  # Daily blog sync
 ├── index.html                 # Main HTML file (1149 lines)
 └── README.md                  # Project documentation
 ```
+
+## 📰 Blog Sync
+
+The blog cards in `index.html` are generated from
+[the Medium RSS feed](https://medium.com/feed/@khawaja.muhammad.mushood), so publishing a
+story is the only step needed to get it on the site.
+
+```bash
+node scripts/update-blog.mjs
+```
+
+The script rewrites everything between the `BLOG_POSTS` and `BLOG_JSONLD` markers in
+`index.html`, and downloads each banner into `assets/images/blog/` (resized to 800px and
+converted to WebP by Medium's image CDN) so the published page never hotlinks Medium.
+
+`.github/workflows/sync-medium-posts.yml` runs it daily at 06:00 UTC and commits the result
+only when something actually changed. It can also be triggered by hand from the **Actions**
+tab.
+
+Two things are worth knowing when a card looks wrong:
+
+- **The feed only returns the 10 most recent stories.** Anything older has to live in
+  `scripts/extra-posts.json`, which is merged in and sorted by date.
+- **Categories are inferred from Medium tags.** When the guess is off — or a story has no
+  banner image in the feed — add an entry to `OVERRIDES` in `scripts/update-blog.mjs`, keyed
+  by the post id (the hash at the end of the Medium URL).
 
 ## 🎯 Key Features Implementation
 

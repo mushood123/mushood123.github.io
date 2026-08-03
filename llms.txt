@@ -94,12 +94,18 @@ Portfolio-FE/
 ├── sitemap-social.xml      # Social profiles sitemap
 ├── google1a6ee1d70bb049f0.html  # Google verification
 ├── README.md               # Project documentation
+├── scripts/
+│   ├── update-blog.mjs     # Rebuilds the blog section from the Medium RSS feed
+│   └── extra-posts.json    # Posts older than the feed's 10-item window
+├── .github/workflows/
+│   └── sync-medium-posts.yml  # Daily blog sync
 └── assets/
     ├── css/
     │   └── style.css       # Main stylesheet
     ├── js/
     │   └── script.js       # Main JavaScript
     ├── images/             # Images, icons, and project screenshots
+    │   └── blog/           # Blog banners synced from Medium (generated)
     └── resume/             # Resume PDF
 
 ```
@@ -123,9 +129,9 @@ Portfolio-FE/
 - Interactive project cards with hover effects
 
 ### 4. Blog
-- Integration with Medium blog posts
-- Featured articles on React, development tools, and best practices
-- External links to full articles
+- Generated from the Medium RSS feed by scripts/update-blog.mjs (daily GitHub Action)
+- Articles on React, Node.js, DevOps, system design, and developer tooling
+- Static HTML with Blog/BlogPosting structured data; external links to full articles
 
 ### 5. Contact
 - Interactive contact form with validation
@@ -186,12 +192,13 @@ The portfolio showcases various projects across:
 
 ## Blog Topics
 
-Featured articles on:
-- React 19's Activity Component
-- Local HTTPS Development with mkcert
-- Axios + Zustand + Persist in React
-- Environment Variables in Vite
-- Zoom Web SDK Integration
+Published on Medium at https://medium.com/@khawaja.muhammad.mushood and mirrored on the
+site's Blog section. Recurring subjects:
+- CI/CD and deployment (GitHub Actions, PM2, Nginx, VPS setup)
+- Backend architecture and caching (Node.js, Redis, system design)
+- React and frontend patterns (React 19 Activity, Zustand, Axios, Vite)
+- Developer tooling and workflow (mkcert, branch protection, environment variables)
+- Cloud and networking (AWS, self-hosted VPN)
 
 ## Browser Support
 

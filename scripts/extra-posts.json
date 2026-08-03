@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Using Environment Variables in a React Vite App",
+    "url": "https://medium.com/@khawaja.muhammad.mushood/using-environment-variables-in-a-react-vite-app-8d8515eef755",
+    "date": "2025-10-01",
+    "category": "Best Practices",
+    "excerpt": "Nowadays, with modern web applications, you’ll frequently want to store API keys, secrets and other configuration values that don’t belong in your source code. That’s where environment variables come in.",
+    "image": "./assets/images/env.png"
+  },
+  {
+    "title": "How I integrated zoom web sdk with component view in my React+Vite App",
+    "url": "https://medium.com/@khawaja.muhammad.mushood/how-i-integrated-zoom-web-sdk-with-component-view-in-my-react-vite-app-8039cae3d08e",
+    "date": "2025-09-30",
+    "category": "Zoom SDK",
+    "excerpt": "So I was trying to integrate zoom web sdk into my react app but couldn’t find any source that is up to date or very reliable so here I’m writing this blog so that the issue’s that I faced don’t other have to face.",
+    "image": "./assets/images/blog-6.jpg"
+  }
+]
