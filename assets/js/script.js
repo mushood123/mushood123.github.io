@@ -1,5 +1,87 @@
 "use strict";
 
+// theme preference
+const THEME_STORAGE_KEY = "themePreference";
+const themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const themeButtons = document.querySelectorAll("[data-theme-option]");
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+const getStoredThemePreference = function () {
+  try {
+    const preference = localStorage.getItem(THEME_STORAGE_KEY);
+    return ["system", "light", "dark"].includes(preference)
+      ? preference
+      : "system";
+  } catch (error) {
+    return "system";
+  }
+};
+
+const storeThemePreference = function (preference) {
+  try {
+    if (preference === "system") {
+      localStorage.setItem(THEME_STORAGE_KEY, "system");
+    } else {
+      localStorage.setItem(THEME_STORAGE_KEY, preference);
+    }
+  } catch (error) {
+    // Ignore storage failures so the visible theme control still works.
+  }
+};
+
+const getResolvedTheme = function (preference) {
+  if (preference === "light" || preference === "dark") return preference;
+  return themeMediaQuery.matches ? "dark" : "light";
+};
+
+const applyThemePreference = function (preference) {
+  const resolvedTheme = getResolvedTheme(preference);
+
+  if (preference === "light" || preference === "dark") {
+    document.documentElement.dataset.theme = preference;
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+
+  document.documentElement.dataset.activeTheme = resolvedTheme;
+
+  if (themeColorMeta) {
+    themeColorMeta.setAttribute(
+      "content",
+      resolvedTheme === "dark" ? "#100F0E" : "#F8F6F2"
+    );
+  }
+
+  for (let i = 0; i < themeButtons.length; i++) {
+    const isActive = themeButtons[i].dataset.themeOption === preference;
+    themeButtons[i].classList.toggle("active", isActive);
+    themeButtons[i].setAttribute("aria-pressed", String(isActive));
+  }
+};
+
+let currentThemePreference = getStoredThemePreference();
+applyThemePreference(currentThemePreference);
+
+for (let i = 0; i < themeButtons.length; i++) {
+  themeButtons[i].addEventListener("click", function () {
+    currentThemePreference = this.dataset.themeOption;
+    storeThemePreference(currentThemePreference);
+    applyThemePreference(currentThemePreference);
+  });
+}
+
+const handleSystemThemeChange = function () {
+  if (currentThemePreference === "system") {
+    applyThemePreference(currentThemePreference);
+  }
+};
+
+if (themeMediaQuery.addEventListener) {
+  themeMediaQuery.addEventListener("change", handleSystemThemeChange);
+} else {
+  themeMediaQuery.addListener(handleSystemThemeChange);
+}
+
 // element toggle function
 const elementToggleFunc = function (elem) {
   elem.classList.toggle("active");
