@@ -1138,33 +1138,64 @@ main {
   font-size: 14px;
 }
 
-.skills-title {
-  margin-bottom: 20px;
+.skill .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-/* Capability tags, not percentages. Twelve bars all sitting between 70% and
-   90% were the loudest block on the resume and the least verifiable thing on
-   the page; a reader cannot act on "Firebase 80%". */
+/* Capability tags, not percentages. Three levels of hierarchy carry 102 of
+   them: category in the display face, subgroup as a mono eyebrow, then the
+   chips themselves — so each level is told apart by typeface, not just size. */
 .skills-groups {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.skills-group-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--jet);
+}
+
+.skills-group-head .icon {
+  font-size: 18px;
+  color: var(--color-accent-ink);
 }
 
 .skills-group-title {
-  color: var(--color-text-secondary);
+  color: var(--white-2);
+  font-family: var(--ff-display);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-600);
+  letter-spacing: -0.012em;
+}
+
+.skills-subgroups {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skills-subgroup-title {
+  color: var(--light-gray-70);
   font-family: var(--ff-mono);
   font-size: var(--fs-8);
   font-weight: var(--fw-500);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .skills-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .skills-tag {
@@ -1174,9 +1205,10 @@ main {
   font-family: var(--ff-mono);
   font-size: var(--fs-8);
   font-weight: var(--fw-400);
-  letter-spacing: 0.02em;
-  padding: 6px 12px;
-  border-radius: 8px;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  padding: 5px 10px;
+  border-radius: 7px;
 }
 
 /**
@@ -2183,8 +2215,18 @@ textarea.form-input::-webkit-resizer {
   }
 
   .skills-groups {
-    grid-template-columns: 1fr 1fr;
-    gap: 26px 30px;
+    display: block;
+    columns: 2;
+    column-gap: 34px;
+  }
+
+  .skills-group {
+    break-inside: avoid;
+    margin-bottom: 30px;
+  }
+
+  .skills-group:last-child {
+    margin-bottom: 0;
   }
 
   /**
