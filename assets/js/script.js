@@ -48,7 +48,7 @@ const applyThemePreference = function (preference) {
   if (themeColorMeta) {
     themeColorMeta.setAttribute(
       "content",
-      resolvedTheme === "dark" ? "#100F0E" : "#F8F6F2"
+      resolvedTheme === "dark" ? "#100F0E" : "#F8F6F2",
     );
   }
 
@@ -150,6 +150,10 @@ for (let i = 0; i < filterBtn.length; i++) {
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
+const formBtnLabel = document.querySelector("[data-form-btn-label]");
+const formStatus = document.querySelector("[data-form-status]");
+
+const CONTACT_EMAIL = "khawaja.muhammad.mushood@gmail.com";
 
 // add event to all form input field
 for (let i = 0; i < formInputs.length; i++) {
@@ -163,24 +167,142 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+const setFormStatus = function (message, state) {
+  formStatus.textContent = message;
+  formStatus.classList.remove("is-success", "is-error");
+  if (state) {
+    formStatus.classList.add(state);
+  }
+};
+
+// submit over fetch so the page never navigates away from the answer
+form.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  formBtn.setAttribute("disabled", "");
+  formBtnLabel.textContent = "Sending";
+  setFormStatus("");
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new FormData(form),
+    });
+
+    if (!response.ok) {
+      throw new Error("Form endpoint returned " + response.status);
+    }
+
+    form.reset();
+    setFormStatus(
+      "Message sent. I'll reply within a couple of days.",
+      "is-success",
+    );
+  } catch (error) {
+    console.error("Contact form error:", error);
+    formBtn.removeAttribute("disabled");
+    setFormStatus(
+      "Couldn't send that. Email me at " + CONTACT_EMAIL + " instead.",
+      "is-error",
+    );
+  } finally {
+    formBtnLabel.textContent = "Send message";
+  }
+});
+
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
+const navbar = document.querySelector("[data-navbar]");
+
+// Publish the nav bar's real height so the chat button and the page's bottom
+// margin can clear it. The bar rewraps on narrow screens and its type scale
+// changes at 580px and 768px, so a hard-coded offset drifts out of date.
+const setNavHeight = function () {
+  document.documentElement.style.setProperty(
+    "--nav-h",
+    navbar.offsetHeight + "px",
+  );
+};
+
+setNavHeight();
+
+if (window.ResizeObserver) {
+  new ResizeObserver(setNavHeight).observe(navbar);
+} else {
+  window.addEventListener("resize", setNavHeight);
+}
+
+/**
+ * Show one section and light up its nav link.
+ *
+ * Matching is on data-nav-link / data-page, not on the button's innerHTML —
+ * the old version compared rendered text and indexed the nav links by page
+ * position from a loop variable that shadowed the outer one, so it only ever
+ * worked because the two lists happened to be in the same order.
+ *
+ * Returns false for an unknown name so a junk hash leaves the page alone.
+ */
+const showPage = function (name) {
+  // Confirm the section exists before touching anything. Deactivating first
+  // and bailing out afterwards leaves every section hidden, so a hash like
+  // #nonsense would render a blank page.
+  let matched = false;
+
+  for (let i = 0; i < pages.length; i++) {
+    if (pages[i].dataset.page === name) {
+      matched = true;
+      break;
+    }
+  }
+
+  if (!matched) return false;
+
+  for (let i = 0; i < pages.length; i++) {
+    pages[i].classList.toggle("active", pages[i].dataset.page === name);
+  }
+
+  for (let i = 0; i < navigationLinks.length; i++) {
+    navigationLinks[i].classList.toggle(
+      "active",
+      navigationLinks[i].dataset.navLink === name,
+    );
+  }
+
+  return true;
+};
+
+const pageFromHash = function () {
+  return decodeURIComponent(
+    window.location.hash.replace(/^#/, ""),
+  ).toLowerCase();
+};
 
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
+    // writing the hash drives showPage through the hashchange handler and
+    // leaves a history entry, so the back button walks the sections
+    window.location.hash = this.dataset.navLink;
   });
+}
+
+window.addEventListener("hashchange", function () {
+  if (showPage(pageFromHash())) {
+    window.scrollTo(0, 0);
+  }
+});
+
+// honour a deep link like /#resume on first paint
+const initialPage = pageFromHash();
+if (initialPage) {
+  showPage(initialPage);
 }
 
 // chat variables
@@ -192,13 +314,21 @@ const chatInput = document.getElementById("chatInput");
 const chatMessages = document.getElementById("chatMessages");
 const chatSendBtn = document.getElementById("chatSendBtn");
 
-const CHAT_API_URL = "https://portfolio-be-production-4ce9.up.railway.app/chat";
+const CHAT_API_URL = "https://portfolio-be-qwif.onrender.com/chat";
 
 // toggle chat
 function toggleChat() {
   chatFab.classList.toggle("active");
   chatContainer.classList.toggle("active");
-  if (chatContainer.classList.contains("active")) {
+
+  const isOpen = chatContainer.classList.contains("active");
+  chatFab.setAttribute("aria-expanded", String(isOpen));
+  chatFab.setAttribute(
+    "aria-label",
+    isOpen ? "Close chat" : "Chat with Mushood's assistant",
+  );
+
+  if (isOpen) {
     chatInput.focus();
   }
 }
@@ -207,10 +337,16 @@ chatFab.addEventListener("click", toggleChat);
 chatCloseBtn.addEventListener("click", toggleChat);
 
 // add message to chat
+// textContent, not innerHTML: this renders both the visitor's own input and
+// whatever the API returns, so markup in either would otherwise execute.
 function addMessage(content, isUser = false) {
   const messageDiv = document.createElement("div");
   messageDiv.className = `chat-message ${isUser ? "user" : "bot"}`;
-  messageDiv.innerHTML = `<p>${content}</p>`;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = content;
+  messageDiv.appendChild(paragraph);
+
   chatMessages.appendChild(messageDiv);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -220,7 +356,11 @@ function addTypingIndicator() {
   const typingDiv = document.createElement("div");
   typingDiv.className = "chat-message bot typing";
   typingDiv.id = "typingIndicator";
-  typingDiv.innerHTML = "<span></span><span></span><span></span>";
+
+  for (let i = 0; i < 3; i++) {
+    typingDiv.appendChild(document.createElement("span"));
+  }
+
   chatMessages.appendChild(typingDiv);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }

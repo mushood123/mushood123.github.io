@@ -12,7 +12,7 @@
  */
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -33,9 +33,16 @@ const BANNER_WIDTH = 800;
 const OVERRIDES = {
   f78689c7fa45: { category: "CI/CD" },
   "1b76e8bda010": { category: "Axios" },
-  "759c43bfe382": { category: "Express.js", image: "./assets/images/mkcert.jpg" },
-  "679ee875e685": { category: "React", image: "./assets/images/zustand.png" },
+  "759c43bfe382": { category: "Express.js", image: "./assets/images/blog/mkcert.webp" },
+  "679ee875e685": { category: "React", image: "./assets/images/blog/zustand.webp" },
 };
+
+/**
+ * Feed banners come through Medium's CDN already resized and re-encoded, but a
+ * hand-picked override is whatever file you point at. Two of them were 2048px
+ * PNGs weighing ~6 MB each and shipped that way for months, so warn loudly.
+ */
+const MAX_BANNER_KB = 150;
 
 /** Medium tag slug -> label shown on the card. */
 const CATEGORY_LABELS = {
@@ -213,6 +220,96 @@ const optimize = (url) => {
     : { url, extension: (url.match(/\.(png|jpe?g|gif|webp)(?:$|\?)/i)?.[1] ?? "png").toLowerCase() };
 };
 
+/**
+ * Intrinsic pixel size, read straight from the file header. Banner cards lay
+ * out at `height: auto` between 450px and 1024px, so without width/height
+ * attributes every card reflows as its image arrives.
+ */
+const imageSize = (localPath) => {
+  let buffer;
+  try {
+    buffer = readFileSync(localPath);
+  } catch {
+    return null;
+  }
+
+  // PNG: IHDR is always the first chunk
+  if (buffer.length > 24 && buffer.readUInt32BE(0) === 0x89504e47) {
+    return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+  }
+
+  // WebP: RIFF container, then a VP8 / VP8L / VP8X chunk
+  if (buffer.length > 30 && buffer.toString("ascii", 0, 4) === "RIFF") {
+    const chunk = buffer.toString("ascii", 12, 16);
+    if (chunk === "VP8 ") {
+      return {
+        width: buffer.readUInt16LE(26) & 0x3fff,
+        height: buffer.readUInt16LE(28) & 0x3fff,
+      };
+    }
+    if (chunk === "VP8L") {
+      const bits = buffer.readUInt32LE(21);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === "VP8X") {
+      return {
+        width: buffer.readUIntLE(24, 3) + 1,
+        height: buffer.readUIntLE(27, 3) + 1,
+      };
+    }
+  }
+
+  // JPEG: walk the segment chain to the start-of-frame marker
+  if (buffer.length > 4 && buffer.readUInt16BE(0) === 0xffd8) {
+    let offset = 2;
+    while (offset + 9 < buffer.length) {
+      if (buffer[offset] !== 0xff) {
+        offset += 1;
+        continue;
+      }
+      const marker = buffer[offset + 1];
+      // SOF0-SOF15, excluding the non-frame markers DHT / JPG / DAC
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+        return {
+          height: buffer.readUInt16BE(offset + 5),
+          width: buffer.readUInt16BE(offset + 7),
+        };
+      }
+      offset += 2 + buffer.readUInt16BE(offset + 2);
+    }
+  }
+
+  return null;
+};
+
+/** Renders the width/height attribute pair, or nothing if the size is unknown. */
+const sizeAttrs = (publicPath, indent) => {
+  if (!publicPath?.startsWith("./")) return "";
+  const size = imageSize(join(ROOT, publicPath.slice(2)));
+  if (!size) return "";
+  return `\n${indent}width="${size.width}"\n${indent}height="${size.height}"`;
+};
+
+/** Warn when a banner on disk is too heavy to ship as a 340px-wide card. */
+const warnIfHeavy = (publicPath) => {
+  if (!publicPath?.startsWith("./")) return publicPath;
+
+  const localPath = join(ROOT, publicPath.slice(2));
+  if (!existsSync(localPath)) {
+    console.warn(`  ! banner missing on disk: ${publicPath}`);
+    return publicPath;
+  }
+
+  const kb = Math.round(statSync(localPath).size / 1024);
+  if (kb > MAX_BANNER_KB) {
+    console.warn(
+      `  ! ${publicPath} is ${kb} KB — over the ${MAX_BANNER_KB} KB budget. ` +
+        `Re-encode it: cwebp -q 78 -resize 800 0 <source> -o ${publicPath.slice(2)}`
+    );
+  }
+  return publicPath;
+};
+
 const downloadBanner = async (source, postId) => {
   const { url, extension } = optimize(source);
   const filename = `${postId}.${extension === "jpeg" ? "jpg" : extension}`;
@@ -256,10 +353,11 @@ const parseFeed = async (xml) => {
       date: published,
       category: override.category ?? pickCategory(tags),
       excerpt: buildExcerpt(content),
-      image:
+      image: warnIfHeavy(
         override.image ??
-        (banner ? await downloadBanner(banner, postId) : null) ??
-        FALLBACK_IMAGE,
+          (banner ? await downloadBanner(banner, postId) : null) ??
+          FALLBACK_IMAGE
+      ),
     });
   }
 
@@ -280,7 +378,7 @@ const renderCards = (posts) =>
                     <img
                       src="${escapeHtml(post.image)}"
                       alt="${escapeHtml(post.title)}"
-                      loading="lazy"
+                      loading="lazy"${sizeAttrs(post.image, "                      ")}
                       class="blog-banner"
                     />
                   </figure>

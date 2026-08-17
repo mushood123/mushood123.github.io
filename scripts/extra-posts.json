@@ -5,7 +5,7 @@
     "date": "2025-10-01",
     "category": "Best Practices",
     "excerpt": "Nowadays, with modern web applications, you’ll frequently want to store API keys, secrets and other configuration values that don’t belong in your source code. That’s where environment variables come in.",
-    "image": "./assets/images/env.png"
+    "image": "./assets/images/blog/env.webp"
   },
   {
     "title": "How I integrated zoom web sdk with component view in my React+Vite App",
