@@ -120,6 +120,7 @@ Portfolio-FE/
 ### 2. Resume
 - Education timeline
 - Professional experience timeline
+- Certifications grid (16 credentials, links to public verification pages)
 - Skills visualization with progress bars
 - Downloadable resume PDF
 

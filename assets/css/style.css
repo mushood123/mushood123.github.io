@@ -1189,6 +1189,107 @@ main {
   border-radius: inherit;
 }
 
+/**
+ * certifications
+ */
+
+.certifications {
+  margin-bottom: 30px;
+}
+
+.certifications .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.certifications-group-title {
+  color: var(--color-text-secondary);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 15px;
+}
+
+.certifications-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.certifications-list:last-child {
+  margin-bottom: 0;
+}
+
+.certifications-card {
+  display: block;
+  height: 100%;
+  padding: 18px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-2);
+  transition: var(--transition-1);
+}
+
+.certifications-card:hover,
+.certifications-card:focus-visible {
+  border-color: var(--color-border-strong);
+  transform: translateY(-2px);
+}
+
+.certifications-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.certifications-title {
+  color: var(--color-text-primary);
+  font-family: var(--ff-display);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-600);
+  line-height: 1.3;
+  /* certificate names are official titles — keep their exact casing
+     ("Node.js", "Claude Code in Action") rather than .h5's capitalize */
+  text-transform: none;
+}
+
+.certifications-card-head ion-icon {
+  color: var(--color-accent-ink);
+  font-size: 16px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: var(--transition-1);
+}
+
+.certifications-card:hover ion-icon,
+.certifications-card:focus-visible ion-icon {
+  opacity: 1;
+}
+
+.certifications-issuer {
+  color: var(--color-accent-ink);
+  font-family: var(--ff-mono);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.certifications-topics {
+  color: var(--color-text-muted);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+}
+
 /*-----------------------------------*\
   #PORTFOLIO
 \*-----------------------------------*/
@@ -2016,6 +2117,12 @@ textarea.form-input::-webkit-resizer {
     grid-template-columns: 1fr 1fr;
   }
 
+  /* certifications grid */
+
+  .certifications-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
   /**
    * CONTACT
    */
@@ -2126,6 +2233,14 @@ textarea.form-input::-webkit-resizer {
    */
 
   .project-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /**
+   * RESUME
+   */
+
+  .certifications-list {
     grid-template-columns: repeat(3, 1fr);
   }
 
