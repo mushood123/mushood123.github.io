@@ -2565,45 +2565,77 @@
     <!--
     - #CHAT
   -->
-    <div class="chat-container" id="chatContainer">
+    <div
+      class="chat-container"
+      id="chatContainer"
+      role="dialog"
+      aria-label="Ask about Mushood's work"
+    >
       <div class="chat-header">
         <div class="chat-header-info">
-          <img
-            src="./assets/images/mushood-96.webp"
-            alt="Mushood"
-            width="96"
-            height="132"
-            class="chat-avatar"
-          />
+          <figure class="chat-avatar-box">
+            <img
+              src="./assets/images/mushood-96.webp"
+              alt=""
+              width="96"
+              height="132"
+              class="chat-avatar"
+            />
+          </figure>
+
           <div>
-            <h4 class="chat-header-title">Mushood</h4>
-            <span class="chat-status">Online</span>
+            <p class="chat-header-title">Mushood</p>
+            <p class="chat-status">AI assistant</p>
           </div>
         </div>
+
         <button
           class="chat-close-btn"
           id="chatCloseBtn"
           type="button"
           aria-label="Close chat"
         >
-          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-close-outline"></use></svg>
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="#i-close-outline"></use>
+          </svg>
         </button>
       </div>
+
       <div class="chat-messages" id="chatMessages">
         <div class="chat-message bot">
           <p>
-            Hi! I'm Mushood's AI assistant. Ask me anything about his skills,
-            experience, or projects!
+            I answer questions about Mushood's work — the stack he uses, what he
+            shipped at Texagon, Code To Kloud and Arbisoft, or anything on his
+            resume.
           </p>
         </div>
+
+        <ul class="chat-suggestions" id="chatSuggestions">
+          <li>
+            <button type="button" class="chat-suggestion" data-chat-suggestion>
+              What has he built with Redis?
+            </button>
+          </li>
+          <li>
+            <button type="button" class="chat-suggestion" data-chat-suggestion>
+              Does he ship mobile apps?
+            </button>
+          </li>
+          <li>
+            <button type="button" class="chat-suggestion" data-chat-suggestion>
+              Is he open to work?
+            </button>
+          </li>
+        </ul>
       </div>
+
       <form class="chat-input-form" id="chatForm">
         <label class="visually-hidden" for="chatInput">Your message</label>
         <input
           type="text"
           class="chat-input"
           id="chatInput"
-          placeholder="Type your message..."
+          placeholder="Ask a question"
           autocomplete="off"
         />
         <button
@@ -2612,7 +2644,9 @@
           id="chatSendBtn"
           aria-label="Send message"
         >
-          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-send"></use></svg>
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="#i-send"></use>
+          </svg>
         </button>
       </form>
     </div>
@@ -2621,12 +2655,17 @@
       class="chat-fab"
       id="chatFab"
       type="button"
-      aria-label="Chat with Mushood's assistant"
+      aria-label="Ask about Mushood's work"
       aria-expanded="false"
       aria-controls="chatContainer"
     >
-      <svg class="icon chat-fab-icon" aria-hidden="true" focusable="false"><use href="#i-chatbubble-ellipses"></use></svg>
-      <svg class="icon chat-fab-icon-close" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
+      <svg class="icon chat-fab-icon" aria-hidden="true" focusable="false">
+        <use href="#i-chatbubble-ellipses"></use>
+      </svg>
+      <svg class="icon chat-fab-icon-close" aria-hidden="true" focusable="false">
+        <use href="#i-close"></use>
+      </svg>
+      <span class="chat-fab-label">Ask about my work</span>
     </button>
 
     <!--

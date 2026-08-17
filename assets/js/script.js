@@ -313,6 +313,7 @@ const chatForm = document.getElementById("chatForm");
 const chatInput = document.getElementById("chatInput");
 const chatMessages = document.getElementById("chatMessages");
 const chatSendBtn = document.getElementById("chatSendBtn");
+const chatSuggestions = document.getElementById("chatSuggestions");
 
 const CHAT_API_URL = "https://portfolio-be-qwif.onrender.com/chat";
 
@@ -325,16 +326,26 @@ function toggleChat() {
   chatFab.setAttribute("aria-expanded", String(isOpen));
   chatFab.setAttribute(
     "aria-label",
-    isOpen ? "Close chat" : "Chat with Mushood's assistant",
+    isOpen ? "Close chat" : "Ask about Mushood's work",
   );
 
   if (isOpen) {
     chatInput.focus();
+  } else {
+    // hand focus back to the trigger rather than dropping it on <body>
+    chatFab.focus();
   }
 }
 
 chatFab.addEventListener("click", toggleChat);
 chatCloseBtn.addEventListener("click", toggleChat);
+
+// Escape closes the panel, the way every other dialog on the web does
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && chatContainer.classList.contains("active")) {
+    toggleChat();
+  }
+});
 
 // add message to chat
 // textContent, not innerHTML: this renders both the visitor's own input and
@@ -396,12 +407,31 @@ async function sendMessage(message) {
   }
 }
 
+const submitChatMessage = function (message) {
+  chatInput.value = message;
+  chatForm.requestSubmit();
+};
+
+if (chatSuggestions) {
+  const suggestions = chatSuggestions.querySelectorAll("[data-chat-suggestion]");
+  for (let i = 0; i < suggestions.length; i++) {
+    suggestions[i].addEventListener("click", function () {
+      submitChatMessage(this.textContent.trim());
+    });
+  }
+}
+
 // handle form submit
 chatForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const message = chatInput.value.trim();
   if (!message) return;
+
+  // the openers have done their job once a real question is asked
+  if (chatSuggestions) {
+    chatSuggestions.remove();
+  }
 
   // disable input while processing
   chatInput.disabled = true;
