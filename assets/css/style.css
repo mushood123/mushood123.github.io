@@ -153,15 +153,20 @@
   --transition-2: 0.5s ease-in-out;
 }
 
-/* Light palette.
-   Mirrored verbatim into the prefers-color-scheme block below — edit both.
+/* Light palette — the single copy.
+   It used to exist twice: once here on [data-theme="light"] and once mirrored
+   into a prefers-color-scheme block for visitors who never touched the
+   control, with a comment asking you to keep them in sync by hand. The inline
+   script in <head> now resolves "system" to a concrete value before first
+   paint and stamps it as data-active-theme, so one selector covers both.
 
    The amber brand survives the switch by splitting the accent in two:
    `--color-accent-ink` is the burnt amber used for text and borders (5.1:1 on
    white), while --orange-yellow-crayola / --vegas-gold stay bright gold and
    are only ever used as fills, with near-black text on top (9.9:1). */
-:root[data-theme="light"] {
+:root[data-active-theme="light"] {
   color-scheme: light;
+
   --color-page-bg: hsl(40, 26%, 96%);
   --color-surface: hsl(0, 0%, 100%);
   --color-surface-raised: hsl(40, 36%, 97%);
@@ -171,7 +176,9 @@
   --color-border-strong-transparent: hsla(38, 24%, 85%, 0);
   --color-text-primary: hsl(30, 14%, 12%);
   --color-text-secondary: hsl(30, 9%, 30%);
-  --color-text-muted: hsla(30, 8%, 34%, 0.78);
+  /* solid, not alpha — the previous hsla(30 8% 34% / .78) landed at 3.94:1 on
+     the page ground, under the 4.5:1 floor. This clears 5.26:1 everywhere. */
+  --color-text-muted: hsl(30, 9%, 38%);
   --color-accent-contrast: hsl(30, 20%, 10%);
   --color-nav-bg: hsla(40, 40%, 99%, 0.85);
   --color-overlay: hsl(30, 20%, 12%);
@@ -214,67 +221,6 @@
   --shadow-5: 0 24px 80px hsla(32, 30%, 20%, 0.1);
 }
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-}
-
-/* Mirror of :root[data-theme="light"] — keep the two in sync. */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    color-scheme: light;
-    --color-page-bg: hsl(40, 26%, 96%);
-    --color-surface: hsl(0, 0%, 100%);
-    --color-surface-raised: hsl(40, 36%, 97%);
-    --color-surface-muted: hsl(40, 20%, 93%);
-    --color-border: hsl(38, 18%, 87%);
-    --color-border-strong: hsl(38, 24%, 85%);
-    --color-border-strong-transparent: hsla(38, 24%, 85%, 0);
-    --color-text-primary: hsl(30, 14%, 12%);
-    --color-text-secondary: hsl(30, 9%, 30%);
-    --color-text-muted: hsla(30, 8%, 34%, 0.78);
-    --color-accent-contrast: hsl(30, 20%, 10%);
-    --color-nav-bg: hsla(40, 40%, 99%, 0.85);
-    --color-overlay: hsl(30, 20%, 12%);
-    --color-overlay-opacity: 0.5;
-    --color-project-overlay: hsla(30, 30%, 12%, 0.42);
-    --color-control-bg: hsl(40, 22%, 95%);
-    --color-online: hsl(150, 68%, 32%);
-    --color-scrollbar-subtle: hsla(32, 20%, 40%, 0.22);
-    --color-scrollbar-subtle-hover: hsla(32, 20%, 40%, 0.32);
-    --color-scrollbar-subtle-shadow: hsla(0, 0%, 100%, 0.6);
-    --color-gradient-onyx-start: hsl(40, 32%, 96%);
-    --color-gradient-onyx-end: hsl(0, 0%, 100%);
-    --color-gradient-jet-start: hsla(38, 40%, 92%, 0.45);
-    --color-gradient-jet-end: hsla(38, 40%, 97%, 0);
-    --color-select-hover-bg: hsl(40, 24%, 94%);
-    --color-accent-ink: hsl(30, 88%, 35%);
-    --orange-yellow-crayola: hsl(42, 98%, 58%);
-    --vegas-gold: hsl(38, 92%, 50%);
-    --text-gradient-yellow: linear-gradient(
-      to right,
-      hsl(38, 92%, 50%),
-      hsl(28, 90%, 46%)
-    );
-    --bg-gradient-yellow-1: linear-gradient(
-      to bottom right,
-      hsl(42, 98%, 58%) 0%,
-      hsla(34, 96%, 56%, 0) 50%
-    );
-    --bg-gradient-yellow-2:
-      linear-gradient(
-        135deg,
-        hsla(42, 98%, 58%, 0.22) 0%,
-        hsla(34, 96%, 56%, 0) 59.86%
-      ),
-      var(--color-surface-raised);
-    --shadow-1: -4px 8px 24px hsla(32, 30%, 20%, 0.07);
-    --shadow-2: 0 16px 30px hsla(32, 30%, 20%, 0.08);
-    --shadow-3: 0 16px 40px hsla(32, 30%, 20%, 0.1);
-    --shadow-4: 0 25px 50px hsla(32, 30%, 20%, 0.08);
-    --shadow-5: 0 24px 80px hsla(32, 30%, 20%, 0.1);
-  }
-}
-
 /*-----------------------------------*\
   #RESET
 \*-----------------------------------*/
@@ -296,7 +242,6 @@ li {
 }
 
 img,
-ion-icon,
 a,
 button,
 time,
@@ -366,6 +311,22 @@ article {
   margin: 16px 0;
 }
 
+/* Inline sprite icons. They size from the surrounding font-size the way the
+   ion-icon web component did, so every existing `font-size` rule still tunes
+   its icon. Outline glyphs carry their own fill="none" stroke="currentColor",
+   so `fill: currentColor` only reaches the solid ones. */
+.icon-sprite {
+  display: none;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
 .icon-box {
   position: relative;
   background: var(--border-gradient-onyx);
@@ -390,8 +351,8 @@ article {
   z-index: -1;
 }
 
-.icon-box ion-icon {
-  --ionicon-stroke-width: 35px;
+.icon-box .icon * {
+  stroke-width: 35px;
 }
 
 article {
@@ -504,7 +465,7 @@ article.active {
 
 main {
   margin: 15px 12px;
-  margin-bottom: 75px;
+  margin-bottom: calc(var(--nav-h, 60px) + 20px);
   min-width: 259px;
 }
 
@@ -534,6 +495,15 @@ main {
 .avatar-box {
   background: var(--bg-gradient-onyx);
   border-radius: 20px;
+}
+
+/* The width/height attributes on the <img> are there to reserve the right
+   aspect ratio before it loads. Without an explicit height here the height
+   attribute also acts as a presentational size, and the avatar renders at its
+   full intrinsic height instead of scaling with the CSS width. */
+.avatar-box img {
+  width: 80px;
+  height: auto;
 }
 
 .info-content .name {
@@ -657,33 +627,75 @@ main {
   font-size: 18px;
 }
 
-.social-item .social-link:hover {
-  color: var(--light-gray);
+.social-item .social-link:hover,
+.social-item .social-link:focus-visible {
+  color: var(--white-2);
 }
 
 /*-----------------------------------*\
   #NAVBAR
 \*-----------------------------------*/
 
-.theme-switcher {
+/* The nav bar is the site's persistent chrome, so the theme control lives
+   inside it. It used to be `position: fixed` in the top-right corner, where it
+   sat directly on top of the sidebar's "Show Contacts" button at every width
+   below 580px — covering it completely, so tapping the button toggled the
+   theme and the contact details were unreachable on phones. */
+
+.navbar {
   position: fixed;
-  top: 12px;
-  right: 12px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0 10px;
+  background: var(--color-nav-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--jet);
+  border-radius: 12px 12px 0 0;
+  box-shadow: var(--shadow-2);
+  z-index: 5;
+}
+
+.navbar-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0 6px;
+}
+
+.navbar-link {
+  color: var(--light-gray);
+  font-size: var(--fs-8);
+  padding: 20px 7px;
+  transition: color var(--transition-1);
+}
+
+/* hover brightens. It used to fall to --light-gray-70, which dropped the
+   hovered link to 4.09:1 in the light theme — below AA, and backwards. */
+.navbar-link:hover,
+.navbar-link:focus {
+  color: var(--white-2);
+}
+
+.navbar-link.active {
+  color: var(--color-accent-ink);
+}
+
+.theme-switcher {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px;
-  background: var(--color-nav-bg);
-  border: 1px solid var(--jet);
-  border-radius: 12px;
-  box-shadow: var(--shadow-2);
-  backdrop-filter: blur(10px);
-  z-index: 6;
+  gap: 2px;
+  flex-shrink: 0;
 }
 
 .theme-switcher-btn {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -705,45 +717,8 @@ main {
   background: var(--orange-yellow-crayola);
 }
 
-.theme-switcher-btn ion-icon {
-  font-size: 18px;
-}
-
-.navbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--color-nav-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--jet);
-  border-radius: 12px 12px 0 0;
-  box-shadow: var(--shadow-2);
-  z-index: 5;
-}
-
-.navbar-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 0 10px;
-}
-
-.navbar-link {
-  color: var(--light-gray);
-  font-size: var(--fs-8);
-  padding: 20px 7px;
-  transition: color var(--transition-1);
-}
-
-.navbar-link:hover,
-.navbar-link:focus {
-  color: var(--light-gray-70);
-}
-
-.navbar-link.active {
-  color: var(--color-accent-ink);
+.theme-switcher-btn .icon {
+  font-size: 17px;
 }
 
 /*-----------------------------------*\
@@ -820,7 +795,7 @@ main {
 .service-item-text {
   color: var(--light-gray);
   font-size: var(--fs-6);
-  font-weight: var(--fw-3);
+  font-weight: var(--fw-300);
   line-height: 1.6;
 }
 
@@ -968,10 +943,6 @@ main {
 .modal-close-btn:hover,
 .modal-close-btn:focus {
   opacity: 1;
-}
-
-.modal-close-btn ion-icon {
-  --ionicon-stroke-width: 50px;
 }
 
 .modal-avatar-box {
@@ -1261,7 +1232,7 @@ main {
   text-transform: none;
 }
 
-.certifications-card-head ion-icon {
+.certifications-card-head .icon {
   color: var(--color-accent-ink);
   font-size: 16px;
   flex-shrink: 0;
@@ -1269,8 +1240,8 @@ main {
   transition: var(--transition-1);
 }
 
-.certifications-card:hover ion-icon,
-.certifications-card:focus-visible ion-icon {
+.certifications-card:hover .icon,
+.certifications-card:focus-visible .icon {
   opacity: 1;
 }
 
@@ -1386,7 +1357,11 @@ main {
   }
 }
 
-.project-item > a {
+/* The cards are figures, not links. The nine projects here are the template's
+   demo work with no destinations, so the anchor wrapper, the hover overlay,
+   the magnifier badge and the image zoom are gone — a card that lifts and
+   glows is promising a click that never had anywhere to go. */
+.project-card {
   width: 100%;
 }
 
@@ -1399,57 +1374,10 @@ main {
   margin-bottom: 15px;
 }
 
-.project-img::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: 1;
-  transition: var(--transition-1);
-}
-
-.project-item > a:hover .project-img::before {
-  background: var(--color-project-overlay);
-}
-
-.project-item-icon-box {
-  --scale: 0.8;
-
-  background: var(--jet);
-  color: var(--color-accent-ink);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(var(--scale));
-  font-size: 20px;
-  padding: 18px;
-  border-radius: 12px;
-  opacity: 0;
-  z-index: 1;
-  transition: var(--transition-1);
-}
-
-.project-item > a:hover .project-item-icon-box {
-  --scale: 1;
-  opacity: 1;
-}
-
-.project-item-icon-box ion-icon {
-  --ionicon-stroke-width: 50px;
-}
-
 .project-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: var(--transition-1);
-}
-
-.project-item > a:hover img {
-  transform: scale(1.1);
 }
 
 .project-title,
@@ -1573,8 +1501,111 @@ main {
   #CONTACT
 \*-----------------------------------*/
 
+/* Screen-reader-only label text. Every form field needs a name that survives
+   the placeholder disappearing on first keystroke. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/**
+ * direct contact — a path that works even if the form or its host is down
+ */
+
+.contact-direct {
+  margin-bottom: 35px;
+}
+
+.contact-direct-title {
+  margin-bottom: 20px;
+}
+
+.contact-direct-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.contact-direct-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+  padding: 16px 18px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-2);
+  transition: var(--transition-1);
+}
+
+.contact-direct-link:hover,
+.contact-direct-link:focus-visible {
+  border-color: var(--color-border-strong);
+  transform: translateY(-2px);
+}
+
+.contact-direct-link .icon-box {
+  flex-shrink: 0;
+}
+
+.contact-direct-value {
+  color: var(--white-2);
+  font-size: var(--fs-7);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/**
+ * contact form
+ */
+
 .contact-form {
   margin-bottom: 10px;
+}
+
+/* Spam trap. Real people never fill this in; bots fill everything. */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.form-status {
+  color: var(--light-gray);
+  font-size: var(--fs-7);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status.is-success {
+  color: var(--color-accent-ink);
+}
+
+.form-status.is-error {
+  color: var(--bittersweet-shimmer);
 }
 
 .form-title {
@@ -1650,7 +1681,7 @@ textarea.form-input::-webkit-resizer {
   transition: var(--transition-1);
 }
 
-.form-btn ion-icon {
+.form-btn .icon {
   font-size: 16px;
 }
 
@@ -1759,7 +1790,7 @@ textarea.form-input::-webkit-resizer {
 
   main {
     margin-top: 60px;
-    margin-bottom: 100px;
+    margin-bottom: calc(var(--nav-h, 60px) + 40px);
   }
 
   /**
@@ -1807,7 +1838,7 @@ textarea.form-input::-webkit-resizer {
     font-size: var(--fs-8);
   }
 
-  .info_more-btn ion-icon {
+  .info_more-btn .icon {
     display: none;
   }
 
@@ -1830,6 +1861,7 @@ textarea.form-input::-webkit-resizer {
 
   .navbar {
     border-radius: 20px 20px 0 0;
+    gap: 0 16px;
   }
 
   .navbar-list {
@@ -1838,6 +1870,15 @@ textarea.form-input::-webkit-resizer {
 
   .navbar-link {
     --fs-8: 14px;
+  }
+
+  .theme-switcher-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .theme-switcher-btn .icon {
+    font-size: 18px;
   }
 
   /**
@@ -2000,6 +2041,15 @@ textarea.form-input::-webkit-resizer {
    * #CONTACT
    */
 
+  /* email keeps a full row — the address is too long to share one */
+  .contact-direct-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-direct-item:first-child {
+    grid-column: 1 / -1;
+  }
+
   .input-wrapper {
     gap: 30px;
     margin-bottom: 30px;
@@ -2018,7 +2068,7 @@ textarea.form-input::-webkit-resizer {
     padding: 16px 20px;
   }
 
-  .form-btn ion-icon {
+  .form-btn .icon {
     font-size: 18px;
   }
 }
@@ -2103,7 +2153,7 @@ textarea.form-input::-webkit-resizer {
   }
 
   .filter-item button:hover {
-    color: var(--light-gray-70);
+    color: var(--white-2);
   }
 
   .filter-item button.active {
@@ -2129,6 +2179,13 @@ textarea.form-input::-webkit-resizer {
 
   .input-wrapper {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .form-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
   }
 
   .form-btn {
@@ -2191,6 +2248,7 @@ textarea.form-input::-webkit-resizer {
     left: auto;
     right: 0;
     width: max-content;
+    flex-wrap: nowrap;
     border-radius: 0 20px;
     padding: 0 20px;
     box-shadow: none;
@@ -2198,7 +2256,13 @@ textarea.form-input::-webkit-resizer {
 
   .navbar-list {
     gap: 30px;
-    padding: 0 20px;
+    padding: 0 20px 0 0;
+  }
+
+  /* separates the theme control from the section links once they share a row */
+  .theme-switcher {
+    padding-left: 20px;
+    border-left: 1px solid var(--jet);
   }
 
   .navbar-link {
@@ -2418,7 +2482,7 @@ textarea.form-input::-webkit-resizer {
   transform: scale(1.1);
 }
 
-.chat-fab ion-icon {
+.chat-fab .icon {
   font-size: 28px;
   color: var(--color-accent-contrast);
 }
@@ -2515,7 +2579,7 @@ textarea.form-input::-webkit-resizer {
   background: var(--jet);
 }
 
-.chat-close-btn ion-icon {
+.chat-close-btn .icon {
   font-size: 20px;
   color: var(--white-2);
 }
@@ -2667,26 +2731,39 @@ textarea.form-input::-webkit-resizer {
   transform: none;
 }
 
-.chat-send-btn ion-icon {
+.chat-send-btn .icon {
   font-size: 20px;
   color: var(--color-accent-contrast);
+}
+
+/* Below 1024px the nav bar is fixed to the bottom of the viewport, so the chat
+   button has to clear it. --nav-h is measured from the live element in
+   script.js, because the bar's height changes with the type scale and rewraps
+   on narrow screens; the old rule hard-coded an offset and only applied below
+   450px, leaving the button sitting on top of the nav from 451px to 1023px. */
+@media (max-width: 1023px) {
+  .chat-fab {
+    bottom: calc(var(--nav-h, 60px) + 20px);
+  }
+
+  .chat-container {
+    bottom: calc(var(--nav-h, 60px) + 90px);
+  }
 }
 
 /* Mobile responsive for chat */
 @media (max-width: 450px) {
   .chat-fab {
-    bottom: 80px;
     right: 20px;
     width: 55px;
     height: 55px;
   }
 
-  .chat-fab ion-icon {
+  .chat-fab .icon {
     font-size: 24px;
   }
 
   .chat-container {
-    bottom: 145px;
     right: 10px;
     left: 10px;
     width: auto;
