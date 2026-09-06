@@ -1,5 +1,13 @@
 [
   {
+    "title": "Mastering Axios + Zustand + Persist in a Vite + React App — The Complete Developer Guide",
+    "url": "https://medium.com/@khawaja.muhammad.mushood/mastering-axios-zustand-persist-in-a-vite-react-app-the-complete-developer-guide-679ee875e685",
+    "date": "2025-10-07",
+    "category": "React",
+    "excerpt": "I usually found myself calling the same API endpoint multiple times — just to display data in different places? It’s slow and bad approach.",
+    "image": "./assets/images/blog/zustand.webp"
+  },
+  {
     "title": "Using Environment Variables in a React Vite App",
     "url": "https://medium.com/@khawaja.muhammad.mushood/using-environment-variables-in-a-react-vite-app-8d8515eef755",
     "date": "2025-10-01",

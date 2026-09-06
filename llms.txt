@@ -1,238 +1,98 @@
-# Mushood - Personal Portfolio Website
+# Mushood
 
-> A modern, responsive personal portfolio website showcasing professional experience, skills, projects, and blog posts.
+> Khawaja Muhammad Mushood is a full-stack software engineer in Lahore, Pakistan, building web and mobile products with React, React Native, Node.js/Nest.js and PostgreSQL. This file indexes his portfolio site, his published writing, and his public credentials.
 
-## Project Overview
+The portfolio is a single page. About, Resume, Portfolio, Blog and Contact are
+switched client-side rather than routed, so they all share the one canonical URL
+and there are no per-section links to follow. The facts that have no URL of their
+own are recorded here instead.
 
-This is a single-page portfolio application built with vanilla HTML, CSS, and JavaScript. The website features a clean, professional design with smooth animations and a fully responsive layout that adapts to all screen sizes.
+Currently Software Engineer at [Texagon](https://texagon.io/) (Aug 2025 –
+present): full-stack React and Node.js/Nest.js work, high-speed REST APIs with
+Redis caching, and Supabase integration. Previously Web Developer at
+[Code To Kloud](https://codetokloud.com/) (Apr 2025 – Aug 2025), building a
+HIPAA-aligned platform with JWT authentication and a React Native app with token
+refresh and centralised error handling; before that Software Engineer Intern at
+[Arbisoft](https://arbisoft.com/) (Jul 2024 – Sep 2024), working on real-time
+Firebase data and mobile push notifications shipped through CircleCI.
 
-## Key Information
+BSc in Computer Science, University of Management and Technology, 2021–2025,
+CGPA 3.7/4.0.
 
-- **Owner**: Mushood (Khawaja Muhammad Mushood)
-- **Role**: Software Engineer
-- **Location**: Lahore, Pakistan
-- **Email**: khawaja.muhammad.mushood@gmail.com
-- **Website**: https://mushood123.github.io/
-- **Tech Stack**: HTML5, CSS3, Vanilla JavaScript
-- **Design**: Mobile-first, responsive, modern UI/UX
+Skills, as grouped on the site:
 
-## Professional Profile
+- Languages: JavaScript, TypeScript, Python, C++, Bash, HTML5, CSS, JSON, YAML
+- Frontend: React, Next.js, Vite, Angular; React Native and Expo on mobile; Redux, Redux Toolkit, Redux Saga, Zustand and Context API for state; React Router, React Navigation, App Router, TanStack Router; Tailwind CSS, Styled Components, TanStack Query, RTK Query, Axios
+- Backend and APIs: Node.js, NestJS, Express, Fastify, FastAPI; REST, GraphQL, WebSockets, webhooks; JWT, AWS Cognito, Clerk, BetterAuth; Redis, Valkey, BullMQ
+- Databases and ORMs: PostgreSQL, MySQL, MongoDB, Amazon Aurora, DynamoDB, Firebase Realtime DB, Supabase Realtime; Prisma, TypeORM, Mongoose, Drizzle; Zod, Joi, Yup, Express Validator
+- Testing: unit tests, E2E, Jest, Vitest
+- Cloud and deployment: Firebase, Supabase, AWS, Google Cloud, Azure; Firestore, Firebase Auth, edge functions, Supabase Storage, RDS, EC2, S3; Vercel, Railway, Netlify
+- DevOps and tooling: Git, GitHub, GitLab, Bitbucket, GitHub Actions, CircleCI; Docker, Nginx, PM2; Postman, Swagger UI
+- Environment and practices: Android Studio, Xcode, VS Code, Cursor; coding agents; HIPAA, GDPR and EU AI Act compliance
 
-### Current Position
-Software Engineer at Texagon (Aug 2025 - Present)
-- Full-stack web applications using React and Node.js with Nest.js
-- High-speed RESTful APIs with Redis caching
-- Supabase integration for enhanced reliability
+Services offered: frontend development, backend development, cross-platform
+mobile apps, and AI/automation work.
 
-### Previous Experience
-- Web Developer at Code To Kloud (April 2025 - Aug 2025)
-- Software Engineer Intern at Arbisoft (July 2024 - Sep 2024)
+The Portfolio section shows nine projects — Finance, Orizon, Fundo, Brawlhalla,
+DSM., MetaSpark, Summary, Task Manager and Arrival — across web development, web
+design and applications. They are showcase pieces without individual pages. The
+writing linked below is published on Medium and mirrored into the site's Blog
+section; recurring subjects are CI/CD and deployment, backend architecture and
+caching, React and frontend patterns, developer tooling, and cloud and
+networking.
 
-### Education
-BSc in Computer Science from University of Management and Technology (2021-2025)
-CGPA: 3.7/4.0
+Contact: khawaja.muhammad.mushood@gmail.com, Lahore, Pakistan.
 
-## Technical Skills
+## Site
 
-### Frontend Development (90%)
-- React / React Native
-- Next.js, TypeScript
-- Tailwind CSS
-- Redux / Redux Toolkit / Redux Saga
+- [Portfolio](https://mushood123.github.io/): The single-page site itself. Full-stack software engineer crafting scalable web and mobile solutions with React, Node.js & AI automation. Includes a light/dark theme switcher and an AI assistant widget that answers questions about his work by calling a separate backend service.
+- [Resume (PDF)](https://mushood123.github.io/assets/resume/KhawajaMuhammadMushoodResume.pdf): Downloadable CV, also linked from the Resume section.
 
-### Backend Development (85%)
-- Node.js / Express / Nest.js
-- RESTful APIs
-- JWT Authentication
-- HIPAA-aligned security practices
+## Writing
 
-### Database & ORM (80%)
-- PostgreSQL
-- Prisma ORM
-- Redis caching
+<!-- LLMS_POSTS:START -->
+- [Nobody Broke Into My Client’s Server. They used the contact form.](https://medium.com/@khawaja.muhammad.mushood/nobody-broke-into-my-clients-server-they-used-the-contact-form-66c5678748c9): A ten-year-old Node.js app quietly became a spam relay. There was no exploit, no stolen password, and no malicious code—just a feature doing exactly what it was built to do.
+- [I Stopped SSH-ing Into My Server to Deploy — Here’s the 30 Lines of YAML That Replaced It](https://medium.com/@khawaja.muhammad.mushood/i-stopped-ssh-ing-into-my-server-to-deploy-heres-the-30-lines-of-yaml-that-replaced-it-f78689c7fa45): Automatic Node.js deployments on any VPS, using GitHub Actions, PM2, and a shell script that lives on the server.
+- [How to Deploy a Node.js Backend the Correct Way with Nginx + PM2 on Any VPS](https://medium.com/@khawaja.muhammad.mushood/how-to-deploy-a-node-js-backend-the-correct-way-with-nginx-pm2-on-any-vps-b8051193f90a): Deploying a Node.js backend is easy until you do it in production on a real VPS server.
+- [How I Built a Free VPN Server on AWS for My Remote Team](https://medium.com/@khawaja.muhammad.mushood/how-i-built-a-free-vpn-server-on-aws-for-my-remote-team-304a16f4de6d): So yesterday, one of my teammates messaged me late at night: “I can’t access the database from the hotel WiFi.”
+- [I Deleted My Database Query and My App Got Faster](https://medium.com/@khawaja.muhammad.mushood/i-deleted-my-database-query-and-my-app-got-faster-1db6ee53abb7): How the “lazy genius” approach to caching saved my sanity (and my server bill)
+- [Stop Using Axios Wrong: Best Practices Every Developer Should Know](https://medium.com/@khawaja.muhammad.mushood/how-to-use-axios-like-a-pro-1b76e8bda010): I was reviewing a junior dev’s code, I noticed a pattern that comes up far too often.
+- [I Built a Chatbot in 2 Hours — Here’s How](https://medium.com/@khawaja.muhammad.mushood/creating-a-chatbot-has-never-been-easier-99d0f8175ab7): So I was learning how to create a chatbot for my portfolio website and was able to create one within 2 hours, and I was amazed with its result and how easy it was to create one. And now here I am…
+- [How to Protect Your Main Branch from Direct Pushes](https://medium.com/@khawaja.muhammad.mushood/shielding-your-production-code-how-to-restrict-github-pushes-to-a-staging-only-workflow-1d81ec9375f4): A single accidental “git push” on last day of your unpaid intern to the master branch can bring down an entire production system. Whether it’s a half-finished feature or a bug as a thanks from your…
+- [The Ultimate Guide to React 19.2 &lt;Activity&gt;: Master Selective Unmounting &amp; State Preservation](https://medium.com/@khawaja.muhammad.mushood/exploring-react-19s-activity-component-preserve-state-and-optimize-performance-5bd66e44a0df): React has been mine favourite and of many other developers for building modern, dynamic UI’s. And now with React 19, &lt;Activity&gt;Component. It introduces a better way to handle visibility, state…
+- [Setting Up Local HTTPS for Development with mkcert — The Right Way (with Express.js)](https://medium.com/@khawaja.muhammad.mushood/setting-up-local-https-for-development-with-mkcert-the-right-way-with-express-js-759c43bfe382): I was working on a project where we were using local development server and often face this scary red browser warning: “Your connection is not private”
+- [Mastering Axios + Zustand + Persist in a Vite + React App — The Complete Developer Guide](https://medium.com/@khawaja.muhammad.mushood/mastering-axios-zustand-persist-in-a-vite-react-app-the-complete-developer-guide-679ee875e685): I usually found myself calling the same API endpoint multiple times — just to display data in different places? It’s slow and bad approach.
+- [Using Environment Variables in a React Vite App](https://medium.com/@khawaja.muhammad.mushood/using-environment-variables-in-a-react-vite-app-8d8515eef755): Nowadays, with modern web applications, you’ll frequently want to store API keys, secrets and other configuration values that don’t belong in your source code. That’s where environment variables come in.
+- [How I integrated zoom web sdk with component view in my React+Vite App](https://medium.com/@khawaja.muhammad.mushood/how-i-integrated-zoom-web-sdk-with-component-view-in-my-react-vite-app-8039cae3d08e): So I was trying to integrate zoom web sdk into my react app but couldn’t find any source that is up to date or very reliable so here I’m writing this blog so that the issue’s that I faced don’t other have to face.
+<!-- LLMS_POSTS:END -->
 
-### Cloud & DevOps (75%)
-- AWS (EC2, RDS, Nginx, PM2)
-- CI/CD (CircleCI, GitHub Actions)
-- Supabase Integration
+## Profiles
 
-### Mobile Development
-- React Native
-- Firebase (Realtime DB, Auth, Push Notifications)
-- Context API state management
+- [GitHub](https://github.com/mushood123): Source code and public repositories.
+- [LinkedIn](https://www.linkedin.com/in/khawaja-muhammad-mushood/): Professional profile and work history.
+- [Medium](https://medium.com/@khawaja.muhammad.mushood): Author profile; the source of the Writing section above.
 
-### Testing & Quality
-- Jest
-- Snapshot Testing
-- Unit Testing
+## Certifications
 
-### Tools & Version Control (90%)
-- Git / GitHub
-- npm / Yarn
-- Styled Components & Animations
+- [Supervised Machine Learning: Regression and Classification](https://coursera.org/share/29d3edf31ce5711670a0f5e8a07f055d): DeepLearning.AI & Stanford Online.
+- [Claude Code in Action](https://verify.skilljar.com/c/6afrbdejsjm4): Anthropic.
+- [Introduction to Prompt Engineering](https://certificates.simplicdn.net/share/9681451_9948612_1767617536882.pdf): Simplilearn.
+- [Software Engineer](https://www.hackerrank.com/certificates/ac7f2f546ae3): HackerRank — problem solving, SQL, REST API.
+- [Software Engineer Intern](https://www.hackerrank.com/certificates/68b51de9692e): HackerRank.
+- [Frontend Developer (React)](https://www.hackerrank.com/certificates/90d5010006fe): HackerRank.
+- [Problem Solving (Intermediate)](https://www.hackerrank.com/certificates/cd27a1e9e943): HackerRank.
+- [Problem Solving (Basic)](https://www.hackerrank.com/certificates/772fead918a8): HackerRank.
+- [JavaScript (Intermediate)](https://www.hackerrank.com/certificates/8fdab235213c): HackerRank.
+- [JavaScript (Basic)](https://www.hackerrank.com/certificates/9b6705b5a023): HackerRank.
+- [Node.js (Intermediate)](https://www.hackerrank.com/certificates/97904064388c): HackerRank.
+- [SQL (Intermediate)](https://www.hackerrank.com/certificates/8994b39f5570): HackerRank.
+- [SQL (Basic)](https://www.hackerrank.com/certificates/07cdf08a0ef0): HackerRank.
+- [Angular (Basic)](https://www.hackerrank.com/certificates/fdd96ac55604): HackerRank.
+- [Python (Basic)](https://www.hackerrank.com/certificates/843286cfdb88): HackerRank.
+- [CSS (Basic)](https://www.hackerrank.com/certificates/ec1cb12a408c): HackerRank.
 
-## Services Offered
+## Optional
 
-1. **Frontend Development**: Responsive and user-friendly websites using JavaScript, TypeScript, React, Next.js, and Tailwind CSS
-
-2. **Backend Development**: Scalable and efficient backend systems using Node.js, Express.js, TypeScript, and Nest.js
-
-3. **Mobile Apps**: Cross-platform mobile apps using React Native for fast and efficient development
-
-4. **AI and Automation**: AI-based automation solutions using n8n, OpenAI, and other modern tools
-
-## Project Structure
-
-```
-Portfolio-FE/
-├── index.html              # Main HTML file (1130 lines)
-├── robots.txt              # Search engine directives
-├── sitemap.xml             # Main sitemap
-├── sitemap-index.xml       # Sitemap index
-├── sitemap-main.xml        # Main pages sitemap
-├── sitemap-blog.xml        # Blog posts sitemap
-├── sitemap-social.xml      # Social profiles sitemap
-├── google1a6ee1d70bb049f0.html  # Google verification
-├── README.md               # Project documentation
-├── scripts/
-│   ├── update-blog.mjs     # Rebuilds the blog section from the Medium RSS feed
-│   └── extra-posts.json    # Posts older than the feed's 10-item window
-├── .github/workflows/
-│   └── sync-medium-posts.yml  # Daily blog sync
-└── assets/
-    ├── css/
-    │   └── style.css       # Main stylesheet
-    ├── js/
-    │   └── script.js       # Main JavaScript
-    ├── images/             # Images, icons, and project screenshots
-    │   └── blog/           # Blog banners synced from Medium (generated)
-    └── resume/             # Resume PDF
-
-```
-
-## Website Sections
-
-### 1. About
-- Professional introduction and bio
-- Service offerings showcase
-- What I'm doing section with 4 main services
-
-### 2. Resume
-- Education timeline
-- Professional experience timeline
-- Certifications grid (16 credentials, links to public verification pages)
-- Skills visualization with progress bars
-- Downloadable resume PDF
-
-### 3. Portfolio
-- Filterable project gallery
-- Categories: Web Development, Web Design, Applications
-- Interactive project cards with hover effects
-
-### 4. Blog
-- Generated from the Medium RSS feed by scripts/update-blog.mjs (daily GitHub Action)
-- Articles on React, Node.js, DevOps, system design, and developer tooling
-- Static HTML with Blog/BlogPosting structured data; external links to full articles
-
-### 5. Contact
-- Interactive contact form with validation
-- Google Maps integration
-- Contact information display
-
-## Key Features
-
-- **Responsive Design**: Mobile-first approach with collapsible sidebar
-- **SPA Navigation**: Single-page application behavior without page reloads
-- **Portfolio Filtering**: Real-time project filtering by category
-- **Form Validation**: Dynamic contact form with real-time validation
-- **SEO Optimized**: Semantic HTML, meta tags, sitemaps, robots.txt
-- **Performance**: Lazy loading images, minimal dependencies, vanilla JavaScript
-
-## Design System
-
-### Colors
-- Primary: Orange Yellow Crayola (hsl(45, 100%, 72%))
-- Accent: Vegas Gold (hsl(45, 54%, 58%))
-- Background: Eerie Black (hsl(240, 2%, 13%))
-- Text: Light Gray (hsl(0, 0%, 84%))
-
-### Typography
-- Font Family: Poppins (Google Fonts)
-- Font Weights: 300, 400, 500, 600
-
-### Effects
-- Smooth transitions (0.25s - 0.5s)
-- Gradient backgrounds
-- Backdrop blur effects
-- Multiple shadow layers for depth
-
-## Social Links
-
-- LinkedIn: https://www.linkedin.com/in/khawaja-muhammad-mushood/
-- GitHub: https://github.com/mushood123
-- Medium: https://medium.com/@khawaja.muhammad.mushood
-
-## SEO & Metadata
-
-- Canonical URL: https://mushood123.github.io/
-- Meta Description: Full-stack software engineer crafting scalable web and mobile solutions with React, Node.js & AI automation
-- Google Site Verification: Configured
-- Sitemaps: Multiple sitemaps for main pages, blog, and social profiles
-- Robots.txt: Configured for search engine crawling
-
-## Notable Projects
-
-The portfolio showcases various projects across:
-- Finance applications
-- Orizon platform
-- Fundo web design
-- Brawlhalla applications
-- DSM web design
-- MetaSpark platform
-- Summary tools
-
-## Blog Topics
-
-Published on Medium at https://medium.com/@khawaja.muhammad.mushood and mirrored on the
-site's Blog section. Recurring subjects:
-- CI/CD and deployment (GitHub Actions, PM2, Nginx, VPS setup)
-- Backend architecture and caching (Node.js, Redis, system design)
-- React and frontend patterns (React 19 Activity, Zustand, Axios, Vite)
-- Developer tooling and workflow (mkcert, branch protection, environment variables)
-- Cloud and networking (AWS, self-hosted VPN)
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Performance Optimizations
-
-- Lazy loading for images
-- Minimal dependencies (only Ionicons)
-- Optimized CSS with custom properties
-- Vanilla JavaScript for fast load times
-- Compressed image assets
-
-## Accessibility
-
-- Semantic HTML5 elements
-- Proper heading hierarchy
-- Alt text for all images
-- Keyboard navigation support
-- ARIA attributes where needed
-
-## Contact Information
-
-For inquiries or collaboration:
-- Email: khawaja.muhammad.mushood@gmail.com
-- Phone: +92 302 4202082
-- Location: Lahore, Pakistan
-
----
-
-Last Updated: December 2025
-Built with ❤️ by Mushood
+- [Site source](https://github.com/mushood123/mushood123.github.io): The repository behind this site — vanilla HTML, CSS and JavaScript, no build step. See its README for structure and local setup.
+- [Sitemap](https://mushood123.github.io/sitemap.xml): The site's only sitemap; covers the home page and the resume PDF.
+- [robots.txt](https://mushood123.github.io/robots.txt): Crawl directives.

@@ -157,6 +157,18 @@ const escapeHtml = (value) =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 
+/**
+ * Titles and excerpts land in llms.txt as markdown link text. Brackets would cut
+ * the link short, and a bare `<Activity>` reads as raw HTML, so both get
+ * neutralised — entities render as the literal character in any markdown parser.
+ */
+const escapeMarkdown = (value) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/([\\[\]])/g, "\\$1");
+
 const collapse = (value) => value.replace(/\s+/g, " ").trim();
 
 const cdata = (block, tag) => {
@@ -435,13 +447,19 @@ const renderJsonLd = (posts) => {
   return `    <script type="application/ld+json">\n${json}\n    </script>`;
 };
 
-const replaceBlock = (html, marker, body) => {
+/** The `## Writing` list in llms.txt: one spec-shaped `[name](url): notes` per post. */
+const renderLlmsPosts = (posts) =>
+  posts
+    .map((post) => `- [${escapeMarkdown(post.title)}](${post.url}): ${escapeMarkdown(post.excerpt)}`)
+    .join("\n");
+
+const replaceBlock = (html, marker, body, file = "index.html") => {
   const start = `<!-- ${marker}:START -->`;
   const end = `<!-- ${marker}:END -->`;
   const pattern = new RegExp(`(${start})[\\s\\S]*?(${end})`);
 
   if (!pattern.test(html)) {
-    throw new Error(`Missing ${start} / ${end} markers in index.html`);
+    throw new Error(`Missing ${start} / ${end} markers in ${file}`);
   }
 
   return html.replace(pattern, `$1\n${body}\n${indentOf(html, start)}$2`);
@@ -477,7 +495,13 @@ const main = async () => {
   html = replaceBlock(html, "BLOG_JSONLD", renderJsonLd(posts));
   await writeFile(indexPath, html);
 
-  console.log(`\nWrote ${posts.length} posts (${feedPosts.length} from the feed) to index.html`);
+  const llmsPath = join(ROOT, "llms.txt");
+  const llms = await readFile(llmsPath, "utf8");
+  await writeFile(llmsPath, replaceBlock(llms, "LLMS_POSTS", renderLlmsPosts(posts), "llms.txt"));
+
+  console.log(
+    `\nWrote ${posts.length} posts (${feedPosts.length} from the feed) to index.html and llms.txt`,
+  );
 };
 
 main().catch((error) => {
