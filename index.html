@@ -426,6 +426,19 @@
         "blogPost": [
           {
             "@type": "BlogPosting",
+            "headline": "pgvector Filter by Metadata Returning Too Few Rows? Fix It",
+            "url": "https://medium.com/@khawaja.muhammad.mushood/pgvector-filter-by-metadata-returning-too-few-rows-fix-it-13b4b2744649",
+            "datePublished": "2026-10-09",
+            "description": "You add WHERE tenant_id = <!-- BLOG_JSONLD:START --> to your vector search, ask for 10 results, and get 3. Sometimes zero. The tenant has 500 documents. Nothing errors, nothing logs, and your RAG pipeline quietly answers…",
+            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
+            "keywords": "PostgreSQL",
+            "author": {
+              "@type": "Person",
+              "name": "Khawaja Muhammad Mushood"
+            }
+          },
+          {
+            "@type": "BlogPosting",
             "headline": "GitHub Actions Manual Approval Before Production Deploys",
             "url": "https://medium.com/@khawaja.muhammad.mushood/github-actions-manual-approval-before-production-deploys-ef0cbdf10b7e",
             "datePublished": "2026-10-09",
@@ -536,19 +549,6 @@
             "description": "A ten-year-old Node.js app quietly became a spam relay. There was no exploit, no stolen password, and no malicious code—just a feature doing exactly what it was built to do.",
             "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
             "keywords": "Node.js",
-            "author": {
-              "@type": "Person",
-              "name": "Khawaja Muhammad Mushood"
-            }
-          },
-          {
-            "@type": "BlogPosting",
-            "headline": "I Stopped SSH-ing Into My Server to Deploy — Here’s the 30 Lines of YAML That Replaced It",
-            "url": "https://medium.com/@khawaja.muhammad.mushood/i-stopped-ssh-ing-into-my-server-to-deploy-heres-the-30-lines-of-yaml-that-replaced-it-f78689c7fa45",
-            "datePublished": "2026-08-02",
-            "description": "Automatic Node.js deployments on any VPS, using GitHub Actions, PM2, and a shell script that lives on the server.",
-            "image": "https://mushood123.github.io/assets/images/blog/f78689c7fa45.webp",
-            "keywords": "CI/CD",
             "author": {
               "@type": "Person",
               "name": "Khawaja Muhammad Mushood"
@@ -2075,6 +2075,35 @@
             <ul class="blog-posts-list">
             <!-- BLOG_POSTS:START -->
               <li class="blog-post-item">
+                <a href="https://medium.com/@khawaja.muhammad.mushood/pgvector-filter-by-metadata-returning-too-few-rows-fix-it-13b4b2744649" target="_blank" rel="noopener">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="./assets/images/blog-6.jpg"
+                      alt="pgvector Filter by Metadata Returning Too Few Rows? Fix It"
+                      loading="lazy"
+                      width="600"
+                      height="394"
+                      class="blog-banner"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">PostgreSQL</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2026-10-09">Oct 9, 2026</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">pgvector Filter by Metadata Returning Too Few Rows? Fix It</h3>
+
+                    <p class="blog-text">You add WHERE tenant_id = <!-- BLOG_POSTS:START --> to your vector search, ask for 10 results, and get 3. Sometimes zero. The tenant has 500 documents. Nothing errors, nothing logs, and your RAG pipeline quietly answers…</p>
+                  </div>
+                </a>
+              </li>
+
+              <li class="blog-post-item">
                 <a href="https://medium.com/@khawaja.muhammad.mushood/github-actions-manual-approval-before-production-deploys-ef0cbdf10b7e" target="_blank" rel="noopener">
                   <figure class="blog-banner-box">
                     <img
@@ -2331,35 +2360,6 @@
                     <h3 class="h3 blog-item-title">Nobody Broke Into My Client’s Server. They used the contact form.</h3>
 
                     <p class="blog-text">A ten-year-old Node.js app quietly became a spam relay. There was no exploit, no stolen password, and no malicious code—just a feature doing exactly what it was built to do.</p>
-                  </div>
-                </a>
-              </li>
-
-              <li class="blog-post-item">
-                <a href="https://medium.com/@khawaja.muhammad.mushood/i-stopped-ssh-ing-into-my-server-to-deploy-heres-the-30-lines-of-yaml-that-replaced-it-f78689c7fa45" target="_blank" rel="noopener">
-                  <figure class="blog-banner-box">
-                    <img
-                      src="./assets/images/blog/f78689c7fa45.webp"
-                      alt="I Stopped SSH-ing Into My Server to Deploy — Here’s the 30 Lines of YAML That Replaced It"
-                      loading="lazy"
-                      width="800"
-                      height="396"
-                      class="blog-banner"
-                    />
-                  </figure>
-
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <p class="blog-category">CI/CD</p>
-
-                      <span class="dot"></span>
-
-                      <time datetime="2026-08-02">Aug 2, 2026</time>
-                    </div>
-
-                    <h3 class="h3 blog-item-title">I Stopped SSH-ing Into My Server to Deploy — Here’s the 30 Lines of YAML That Replaced It</h3>
-
-                    <p class="blog-text">Automatic Node.js deployments on any VPS, using GitHub Actions, PM2, and a shell script that lives on the server.</p>
                   </div>
                 </a>
               </li>
