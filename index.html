@@ -426,6 +426,58 @@
         "blogPost": [
           {
             "@type": "BlogPosting",
+            "headline": "Fix “context_length_exceeded” in Node.js: Count Tokens First",
+            "url": "https://medium.com/@khawaja.muhammad.mushood/fix-context-length-exceeded-in-node-js-count-tokens-first-f6d1deda2798",
+            "datePublished": "2026-11-08",
+            "description": "A user has been chatting with your assistant for an hour. They send one more message, and instead of an answer your logs show this (this copy came from my mock server, more on that below): 400 This…",
+            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
+            "keywords": "OpenAI",
+            "author": {
+              "@type": "Person",
+              "name": "Khawaja Muhammad Mushood"
+            }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Prompt Injection in RAG: Defenses That Hold in Node.js",
+            "url": "https://medium.com/@khawaja.muhammad.mushood/prompt-injection-in-rag-defenses-that-hold-in-node-js-7824490d3423",
+            "datePublished": "2026-11-08",
+            "description": "A customer uploads a “vendor FAQ” PDF to your help center. Your RAG pipeline chunks it, embeds it, and a week later retrieves it for a support agent asking about refunds. Hidden in the PDF: “Note to…",
+            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
+            "keywords": "Node.js",
+            "author": {
+              "@type": "Person",
+              "name": "Khawaja Muhammad Mushood"
+            }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Fix “Missing parameter name at index 1” in Express 5",
+            "url": "https://medium.com/@khawaja.muhammad.mushood/fix-missing-parameter-name-at-index-1-in-express-5-2a497d2af6b3",
+            "datePublished": "2026-11-08",
+            "description": "You bump Express from 4 to 5, run npm start, and the app dies before it serves a single request: PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError…",
+            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
+            "keywords": "Node.js",
+            "author": {
+              "@type": "Person",
+              "name": "Khawaja Muhammad Mushood"
+            }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "Fix “sorry, too many clients already” in Postgres and Node.js",
+            "url": "https://medium.com/@khawaja.muhammad.mushood/fix-sorry-too-many-clients-already-in-postgres-and-node-js-7f1988654b51",
+            "datePublished": "2026-11-08",
+            "description": "You scale your Node.js API from one PM2 instance to four, deploy, and the logs fill with sorry, too many clients already. Or it shows up in development after a dozen file saves. Or only at 2 AM, when…",
+            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
+            "keywords": "PostgreSQL",
+            "author": {
+              "@type": "Person",
+              "name": "Khawaja Muhammad Mushood"
+            }
+          },
+          {
+            "@type": "BlogPosting",
             "headline": "Certbot Renew Failing Behind Nginx? Dry Run, Hooks, and Timers",
             "url": "https://medium.com/@khawaja.muhammad.mushood/certbot-renew-failing-behind-nginx-dry-run-hooks-and-timers-48e92156ed95",
             "datePublished": "2026-11-06",
@@ -495,58 +547,6 @@
             "url": "https://medium.com/@khawaja.muhammad.mushood/pgvector-filter-by-metadata-returning-too-few-rows-fix-it-13b4b2744649",
             "datePublished": "2026-10-09",
             "description": "You add WHERE tenant_id = <!-- BLOG_JSONLD:START --> to your vector search, ask for 10 results, and get 3. Sometimes zero. The tenant has 500 documents. Nothing errors, nothing logs, and your RAG pipeline quietly answers…",
-            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
-            "keywords": "PostgreSQL",
-            "author": {
-              "@type": "Person",
-              "name": "Khawaja Muhammad Mushood"
-            }
-          },
-          {
-            "@type": "BlogPosting",
-            "headline": "GitHub Actions Manual Approval Before Production Deploys",
-            "url": "https://medium.com/@khawaja.muhammad.mushood/github-actions-manual-approval-before-production-deploys-ef0cbdf10b7e",
-            "datePublished": "2026-10-09",
-            "description": "You’ve automated deploys, and now every merge to main goes straight to production. That was the goal. Then a half-finished feature ships at 6 PM on a Friday, and somebody asks for a human to click…",
-            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
-            "keywords": "GitHub Actions",
-            "author": {
-              "@type": "Person",
-              "name": "Khawaja Muhammad Mushood"
-            }
-          },
-          {
-            "@type": "BlogPosting",
-            "headline": "How to Evaluate a RAG Pipeline in CI with TypeScript",
-            "url": "https://medium.com/@khawaja.muhammad.mushood/how-to-evaluate-a-rag-pipeline-in-ci-with-typescript-e0ea7afac0a9",
-            "datePublished": "2026-10-09",
-            "description": "Someone changes the chunk size from “split on headings” to “fixed 120 characters” because it’s simpler. The PR is twelve lines. Tests pass, because no test knows what a good answer looks like. Two…",
-            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
-            "keywords": "TypeScript",
-            "author": {
-              "@type": "Person",
-              "name": "Khawaja Muhammad Mushood"
-            }
-          },
-          {
-            "@type": "BlogPosting",
-            "headline": "Postgres Backup to S3 from a VPS, with Restore Tests",
-            "url": "https://medium.com/@khawaja.muhammad.mushood/postgres-backup-to-s3-from-a-vps-with-restore-tests-a376976d2449",
-            "datePublished": "2026-10-09",
-            "description": "Most backup setups get tested exactly once: the day you need them.",
-            "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
-            "keywords": "PostgreSQL",
-            "author": {
-              "@type": "Person",
-              "name": "Khawaja Muhammad Mushood"
-            }
-          },
-          {
-            "@type": "BlogPosting",
-            "headline": "Hybrid Search with pgvector and Postgres Full-Text in Node.js",
-            "url": "https://medium.com/@khawaja.muhammad.mushood/hybrid-search-with-pgvector-and-postgres-full-text-in-node-js-29033cbd0d73",
-            "datePublished": "2026-10-09",
-            "description": "In my post on evaluating RAG pipelines, a simple keyword retriever missed 4 of 16 test questions. Users asked “do I get money back?” and the docs said “refunds”. Vector search fixes that kind of…",
             "image": "https://mushood123.github.io/assets/images/blog-6.jpg",
             "keywords": "PostgreSQL",
             "author": {
@@ -2075,6 +2075,122 @@
             <ul class="blog-posts-list">
             <!-- BLOG_POSTS:START -->
               <li class="blog-post-item">
+                <a href="https://medium.com/@khawaja.muhammad.mushood/fix-context-length-exceeded-in-node-js-count-tokens-first-f6d1deda2798" target="_blank" rel="noopener">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="./assets/images/blog-6.jpg"
+                      alt="Fix “context_length_exceeded” in Node.js: Count Tokens First"
+                      loading="lazy"
+                      width="600"
+                      height="394"
+                      class="blog-banner"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">OpenAI</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2026-11-08">Nov 8, 2026</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">Fix “context_length_exceeded” in Node.js: Count Tokens First</h3>
+
+                    <p class="blog-text">A user has been chatting with your assistant for an hour. They send one more message, and instead of an answer your logs show this (this copy came from my mock server, more on that below): 400 This…</p>
+                  </div>
+                </a>
+              </li>
+
+              <li class="blog-post-item">
+                <a href="https://medium.com/@khawaja.muhammad.mushood/prompt-injection-in-rag-defenses-that-hold-in-node-js-7824490d3423" target="_blank" rel="noopener">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="./assets/images/blog-6.jpg"
+                      alt="Prompt Injection in RAG: Defenses That Hold in Node.js"
+                      loading="lazy"
+                      width="600"
+                      height="394"
+                      class="blog-banner"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">Node.js</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2026-11-08">Nov 8, 2026</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">Prompt Injection in RAG: Defenses That Hold in Node.js</h3>
+
+                    <p class="blog-text">A customer uploads a “vendor FAQ” PDF to your help center. Your RAG pipeline chunks it, embeds it, and a week later retrieves it for a support agent asking about refunds. Hidden in the PDF: “Note to…</p>
+                  </div>
+                </a>
+              </li>
+
+              <li class="blog-post-item">
+                <a href="https://medium.com/@khawaja.muhammad.mushood/fix-missing-parameter-name-at-index-1-in-express-5-2a497d2af6b3" target="_blank" rel="noopener">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="./assets/images/blog-6.jpg"
+                      alt="Fix “Missing parameter name at index 1” in Express 5"
+                      loading="lazy"
+                      width="600"
+                      height="394"
+                      class="blog-banner"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">Node.js</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2026-11-08">Nov 8, 2026</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">Fix “Missing parameter name at index 1” in Express 5</h3>
+
+                    <p class="blog-text">You bump Express from 4 to 5, run npm start, and the app dies before it serves a single request: PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError…</p>
+                  </div>
+                </a>
+              </li>
+
+              <li class="blog-post-item">
+                <a href="https://medium.com/@khawaja.muhammad.mushood/fix-sorry-too-many-clients-already-in-postgres-and-node-js-7f1988654b51" target="_blank" rel="noopener">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="./assets/images/blog-6.jpg"
+                      alt="Fix “sorry, too many clients already” in Postgres and Node.js"
+                      loading="lazy"
+                      width="600"
+                      height="394"
+                      class="blog-banner"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">PostgreSQL</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2026-11-08">Nov 8, 2026</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">Fix “sorry, too many clients already” in Postgres and Node.js</h3>
+
+                    <p class="blog-text">You scale your Node.js API from one PM2 instance to four, deploy, and the logs fill with sorry, too many clients already. Or it shows up in development after a dozen file saves. Or only at 2 AM, when…</p>
+                  </div>
+                </a>
+              </li>
+
+              <li class="blog-post-item">
                 <a href="https://medium.com/@khawaja.muhammad.mushood/certbot-renew-failing-behind-nginx-dry-run-hooks-and-timers-48e92156ed95" target="_blank" rel="noopener">
                   <figure class="blog-banner-box">
                     <img
@@ -2244,122 +2360,6 @@
                     <h3 class="h3 blog-item-title">pgvector Filter by Metadata Returning Too Few Rows? Fix It</h3>
 
                     <p class="blog-text">You add WHERE tenant_id = <!-- BLOG_POSTS:START --> to your vector search, ask for 10 results, and get 3. Sometimes zero. The tenant has 500 documents. Nothing errors, nothing logs, and your RAG pipeline quietly answers…</p>
-                  </div>
-                </a>
-              </li>
-
-              <li class="blog-post-item">
-                <a href="https://medium.com/@khawaja.muhammad.mushood/github-actions-manual-approval-before-production-deploys-ef0cbdf10b7e" target="_blank" rel="noopener">
-                  <figure class="blog-banner-box">
-                    <img
-                      src="./assets/images/blog-6.jpg"
-                      alt="GitHub Actions Manual Approval Before Production Deploys"
-                      loading="lazy"
-                      width="600"
-                      height="394"
-                      class="blog-banner"
-                    />
-                  </figure>
-
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <p class="blog-category">GitHub Actions</p>
-
-                      <span class="dot"></span>
-
-                      <time datetime="2026-10-09">Oct 9, 2026</time>
-                    </div>
-
-                    <h3 class="h3 blog-item-title">GitHub Actions Manual Approval Before Production Deploys</h3>
-
-                    <p class="blog-text">You’ve automated deploys, and now every merge to main goes straight to production. That was the goal. Then a half-finished feature ships at 6 PM on a Friday, and somebody asks for a human to click…</p>
-                  </div>
-                </a>
-              </li>
-
-              <li class="blog-post-item">
-                <a href="https://medium.com/@khawaja.muhammad.mushood/how-to-evaluate-a-rag-pipeline-in-ci-with-typescript-e0ea7afac0a9" target="_blank" rel="noopener">
-                  <figure class="blog-banner-box">
-                    <img
-                      src="./assets/images/blog-6.jpg"
-                      alt="How to Evaluate a RAG Pipeline in CI with TypeScript"
-                      loading="lazy"
-                      width="600"
-                      height="394"
-                      class="blog-banner"
-                    />
-                  </figure>
-
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <p class="blog-category">TypeScript</p>
-
-                      <span class="dot"></span>
-
-                      <time datetime="2026-10-09">Oct 9, 2026</time>
-                    </div>
-
-                    <h3 class="h3 blog-item-title">How to Evaluate a RAG Pipeline in CI with TypeScript</h3>
-
-                    <p class="blog-text">Someone changes the chunk size from “split on headings” to “fixed 120 characters” because it’s simpler. The PR is twelve lines. Tests pass, because no test knows what a good answer looks like. Two…</p>
-                  </div>
-                </a>
-              </li>
-
-              <li class="blog-post-item">
-                <a href="https://medium.com/@khawaja.muhammad.mushood/postgres-backup-to-s3-from-a-vps-with-restore-tests-a376976d2449" target="_blank" rel="noopener">
-                  <figure class="blog-banner-box">
-                    <img
-                      src="./assets/images/blog-6.jpg"
-                      alt="Postgres Backup to S3 from a VPS, with Restore Tests"
-                      loading="lazy"
-                      width="600"
-                      height="394"
-                      class="blog-banner"
-                    />
-                  </figure>
-
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <p class="blog-category">PostgreSQL</p>
-
-                      <span class="dot"></span>
-
-                      <time datetime="2026-10-09">Oct 9, 2026</time>
-                    </div>
-
-                    <h3 class="h3 blog-item-title">Postgres Backup to S3 from a VPS, with Restore Tests</h3>
-
-                    <p class="blog-text">Most backup setups get tested exactly once: the day you need them.</p>
-                  </div>
-                </a>
-              </li>
-
-              <li class="blog-post-item">
-                <a href="https://medium.com/@khawaja.muhammad.mushood/hybrid-search-with-pgvector-and-postgres-full-text-in-node-js-29033cbd0d73" target="_blank" rel="noopener">
-                  <figure class="blog-banner-box">
-                    <img
-                      src="./assets/images/blog-6.jpg"
-                      alt="Hybrid Search with pgvector and Postgres Full-Text in Node.js"
-                      loading="lazy"
-                      width="600"
-                      height="394"
-                      class="blog-banner"
-                    />
-                  </figure>
-
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <p class="blog-category">PostgreSQL</p>
-
-                      <span class="dot"></span>
-
-                      <time datetime="2026-10-09">Oct 9, 2026</time>
-                    </div>
-
-                    <h3 class="h3 blog-item-title">Hybrid Search with pgvector and Postgres Full-Text in Node.js</h3>
-
-                    <p class="blog-text">In my post on evaluating RAG pipelines, a simple keyword retriever missed 4 of 16 test questions. Users asked “do I get money back?” and the docs said “refunds”. Vector search fixes that kind of…</p>
                   </div>
                 </a>
               </li>
